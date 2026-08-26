@@ -29,31 +29,53 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
-.hdr{background:var(--ink);color:#fff;padding:16px 18px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
-.hdr-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;}
-.hdr-sub{font-size:10px;opacity:.5;margin-top:2px;text-transform:uppercase;letter-spacing:.08em;}
-.hdr-right{display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
-.mode-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 13px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;}
-.mode-btn:hover{background:rgba(255,255,255,.25);}
-.mode-btn.val{background:#F59E0B;border-color:#F59E0B;color:#78350F;font-weight:700;}
-.share-btn{background:#059669;border:1px solid #059669;color:#fff;padding:6px 13px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s;white-space:nowrap;}
-.share-btn:hover{opacity:.85;}
-.pending-pill{background:#EF4444;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;display:none;}
+
+/* ── SETUP SCREEN ── */
+#setupScreen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:24px;background:var(--bg);}
+.setup-card{background:#fff;border-radius:16px;padding:32px;max-width:500px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.12);}
+.setup-logo{font-size:48px;text-align:center;margin-bottom:16px;}
+.setup-card h1{font-family:'Playfair Display',serif;font-size:22px;text-align:center;margin-bottom:8px;}
+.setup-card .sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px;line-height:1.6;}
+.setup-steps{counter-reset:steps;margin-bottom:22px;}
+.setup-step{display:flex;gap:12px;margin-bottom:14px;font-size:13px;line-height:1.5;color:var(--muted);}
+.setup-step::before{counter-increment:steps;content:counter(steps);background:var(--ink);color:#fff;border-radius:50%;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.setup-step strong{color:var(--ink);}
+.setup-step code{background:#F1F5F9;padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11.5px;color:#1E40AF;}
+.setup-input{width:100%;padding:12px 14px;border:2px solid var(--bg2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);outline:none;margin-bottom:10px;}
+.setup-input:focus{border-color:var(--ink);}
+.setup-input::placeholder{color:var(--lt);}
+.setup-btn{width:100%;padding:13px;background:var(--ink);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.setup-btn:hover{opacity:.88;}
+.setup-err{background:#FFF5F5;border:1px solid #FC8181;border-radius:var(--r);padding:10px 14px;font-size:12.5px;color:#991B1B;margin-bottom:12px;display:none;}
+.setup-note{font-size:11px;color:var(--lt);text-align:center;margin-top:12px;line-height:1.5;}
+
+/* ── APP ── */
+#app{display:none;}
+.hdr{background:var(--ink);color:#fff;padding:14px 16px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.hdr-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;}
+.hdr-sub{font-size:10px;opacity:.45;margin-top:2px;text-transform:uppercase;letter-spacing:.07em;}
+.hdr-right{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.hdr-sync{font-size:11px;opacity:.55;white-space:nowrap;}
+.hdr-sync.syncing{opacity:1;color:#F59E0B;}
+.hdr-sync.ok{opacity:1;color:#86EFAC;}
+.hdr-sync.err{opacity:1;color:#FC8181;}
+.icon-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.icon-btn:hover{background:rgba(255,255,255,.25);}
+.icon-btn.val{background:#F59E0B;border-color:#F59E0B;color:#78350F;font-weight:700;}
+.pending-pill{background:#EF4444;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;display:none;}
 .pending-pill.show{display:inline-block;}
-.import-bar{background:#F0FDF4;border-bottom:2px solid #22C55E;padding:10px 18px;font-size:12px;font-weight:600;color:#14532D;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.import-bar button{background:none;border:none;color:#14532D;cursor:pointer;font-size:16px;padding:0 4px;}
-.val-bar{display:none;background:#FFFBEB;border-bottom:2px solid #F59E0B;padding:10px 18px;font-size:12px;font-weight:600;color:#92400E;align-items:center;gap:10px;}
+.val-bar{display:none;background:#FFFBEB;border-bottom:2px solid #F59E0B;padding:9px 16px;font-size:12px;font-weight:600;color:#92400E;align-items:center;gap:8px;}
 .val-bar.show{display:flex;}
 .tabs{display:flex;background:#fff;border-bottom:1.5px solid var(--bg2);overflow-x:auto;}
-.tab-btn{padding:12px 16px;font-size:13px;font-weight:500;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.tab-btn{padding:12px 15px;font-size:13px;font-weight:500;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;font-family:'DM Sans',sans-serif;white-space:nowrap;}
 .tab-btn.active{color:var(--ink);border-bottom-color:var(--ink);font-weight:700;}
 .tab-pane{display:none;}
 .tab-pane.active{display:block;}
-.info-bar{background:#fff;border-bottom:1px solid var(--bg2);padding:9px 18px;font-size:11.5px;color:var(--muted);}
-.day-nav{display:flex;gap:6px;padding:14px 16px 2px;overflow-x:auto;}
-.day-btn{flex-shrink:0;padding:7px 13px;border-radius:20px;border:1px solid var(--bg2);background:#fff;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;}
+.info-bar{background:#fff;border-bottom:1px solid var(--bg2);padding:8px 16px;font-size:11.5px;color:var(--muted);}
+.day-nav{display:flex;gap:5px;padding:12px 16px 2px;overflow-x:auto;}
+.day-btn{flex-shrink:0;padding:6px 12px;border-radius:20px;border:1px solid var(--bg2);background:#fff;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;}
 .day-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
-.timeline{padding:12px 16px 24px;display:flex;flex-direction:column;gap:5px;max-width:620px;}
+.timeline{padding:10px 16px 24px;display:flex;flex-direction:column;gap:5px;max-width:620px;}
 .ev-row{display:flex;gap:10px;align-items:flex-start;}
 .ev-time{font-size:10px;font-weight:700;color:var(--lt);min-width:50px;padding-top:10px;flex-shrink:0;}
 .ev-card{flex:1;border-radius:var(--r);padding:9px 12px;border-left:3px solid;transition:transform .1s,opacity .15s;}
@@ -93,19 +115,17 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .btn{padding:10px 16px;border-radius:var(--r);border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
 .btn:hover{opacity:.85;}
 .btn-pri{background:var(--ink);color:#fff;flex:1;}
-.btn-grn{background:#059669;color:#fff;flex:1;}
 .btn-can{background:var(--bg2);color:var(--ink);}
 .btn-ok{background:#22C55E;color:#fff;flex:1;}
 .btn-no{background:#EF4444;color:#fff;flex:1;}
 .proposal-box{background:var(--prop-bg);border:1px solid var(--prop-b);border-radius:var(--r);padding:10px 12px;font-size:13px;font-weight:500;color:var(--prop-t);margin-bottom:14px;}
-.share-hint{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;}
-.plan-summary{background:var(--ink);color:#fff;padding:13px 18px;display:flex;gap:20px;flex-wrap:wrap;}
+.plan-summary{background:var(--ink);color:#fff;padding:12px 16px;display:flex;gap:20px;flex-wrap:wrap;}
 .ps-item .ps-label{font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;}
 .ps-item .ps-val{font-size:13px;font-weight:600;}
-.months-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding:16px;}
-.mc{background:#fff;border-radius:12px;border:2px solid var(--bg2);padding:15px;}
+.months-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px;padding:14px;}
+.mc{background:#fff;border-radius:12px;border:2px solid var(--bg2);padding:14px;}
 .mc.has-act{border-color:#F59E0B;}
-.mc-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;}
+.mc-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
 .mc-year{font-size:10px;color:var(--lt);margin-top:1px;margin-bottom:10px;}
 .mc-fixed-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
 .mc-tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;}
@@ -124,15 +144,15 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .opt-dot.on{background:currentColor;}
 .mc-notes{width:100%;padding:8px 10px;border:1.5px solid var(--bg2);border-radius:var(--r);font-size:12px;font-family:'DM Sans',sans-serif;color:var(--ink);resize:none;outline:none;height:52px;background:var(--bg);margin-top:4px;}
 .mc-notes:focus{border-color:var(--ink);}
-.mat-pad{padding:16px;}
-.mat-h{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:14px;}
-.sub-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px;margin-bottom:22px;}
-.sc{background:#fff;border-radius:10px;padding:13px;border-left:4px solid;}
-.sc-ico{font-size:16px;margin-bottom:4px;}
+.mat-pad{padding:14px;}
+.mat-h{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:12px;}
+.sub-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:20px;}
+.sc{background:#fff;border-radius:10px;padding:12px;border-left:4px solid;}
+.sc-ico{font-size:15px;margin-bottom:4px;}
 .sc-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;opacity:.75;}
-.sc-hrs{font-size:24px;font-weight:700;line-height:1;}
+.sc-hrs{font-size:22px;font-weight:700;line-height:1;}
 .sc-goal{font-size:10px;opacity:.55;margin-top:2px;}
-.sc-bar{height:5px;background:var(--bg2);border-radius:3px;margin-top:9px;overflow:hidden;}
+.sc-bar{height:5px;background:var(--bg2);border-radius:3px;margin-top:8px;overflow:hidden;}
 .sc-fill{height:100%;border-radius:3px;}
 .sc-bio{border-color:var(--bio-b);color:var(--bio-t);}
 .sc-qui{border-color:var(--qui-b);color:var(--qui-t);}
@@ -140,335 +160,462 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .sc-eng{border-color:var(--eng-b);color:var(--eng-t);}
 .sc-vest{border-color:var(--vest-b);color:var(--vest-t);}
 .wk-grid{background:#fff;border-radius:10px;overflow:hidden;}
-.wk-head{background:var(--ink);color:#fff;display:grid;grid-template-columns:110px repeat(5,1fr) 90px;}
-.wk-row{display:grid;grid-template-columns:110px repeat(5,1fr) 90px;border-bottom:1px solid var(--bg2);}
+.wk-head{background:var(--ink);color:#fff;display:grid;grid-template-columns:108px repeat(5,1fr) 80px;}
+.wk-row{display:grid;grid-template-columns:108px repeat(5,1fr) 80px;border-bottom:1px solid var(--bg2);}
 .wk-row:last-child{border-bottom:none;}
 .wk-row:hover{background:var(--bg);}
-.wk-head>div,.wk-row>div{padding:9px 8px;font-size:11px;}
+.wk-head>div,.wk-row>div{padding:8px 7px;font-size:11px;}
 .wk-head>div{font-weight:500;text-transform:uppercase;letter-spacing:.05em;}
-.wk-sub{font-weight:600;display:flex;align-items:center;gap:6px;font-size:12px;}
-.wk-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.hr-inp{width:46px;padding:4px 6px;border:1px solid var(--bg2);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:center;color:var(--ink);outline:none;}
+.wk-sub{font-weight:600;display:flex;align-items:center;gap:5px;font-size:11.5px;}
+.wk-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.hr-inp{width:44px;padding:4px 5px;border:1px solid var(--bg2);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:center;color:var(--ink);outline:none;}
 .hr-inp:focus{border-color:var(--ink);}
 .wk-total{font-weight:700;font-size:12px;}
-.footer{text-align:center;padding:16px;font-size:11px;color:var(--lt);border-top:1px solid var(--bg2);margin-top:8px;}
-@media(max-width:480px){.months-grid{grid-template-columns:1fr;}.sub-cards{grid-template-columns:1fr 1fr;}.wk-head,.wk-row{grid-template-columns:80px repeat(5,1fr) 55px;font-size:10px;}.hr-inp{width:34px;}}
+.footer{text-align:center;padding:14px;font-size:11px;color:var(--lt);border-top:1px solid var(--bg2);margin-top:8px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.footer a{color:var(--lt);text-decoration:none;}
+.footer a:hover{color:var(--ink);}
+.reset-link{font-size:10px;color:var(--lt);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:500;z-index:500;display:none;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.toast.show{display:block;}
+@media(max-width:480px){.months-grid{grid-template-columns:1fr;}.sub-cards{grid-template-columns:1fr 1fr;}.wk-head,.wk-row{grid-template-columns:72px repeat(5,1fr) 52px;font-size:10px;}.hr-inp{width:32px;}}
 </style>
 </head>
 <body>
 
-<header class="hdr">
-  <div>
-    <div class="hdr-title">Planejador · Giovanni M. J. Afonso</div>
-    <div class="hdr-sub">Set 2025 – Fev 2026 · Medicina · TOEFL · Esporte</div>
-  </div>
-  <div class="hdr-right">
-    <span class="pending-pill" id="pendingPill">0</span>
-    <button class="share-btn" onclick="openShare()">📤 Compartilhar</button>
-    <button class="mode-btn" id="modeBtn" onclick="toggleMode()">🔒 Modo Pai</button>
-  </div>
-</header>
+<!-- ═══════════════════════════════════════════
+     SETUP SCREEN
+════════════════════════════════════════════ -->
+<div id="setupScreen">
+  <div class="setup-card">
+    <div class="setup-logo">🔥</div>
+    <h1>Configurar Sincronização</h1>
+    <p class="sub">Para que o Giovanni e o Pai vejam o mesmo planejador em tempo real, precisamos conectar a um banco de dados gratuito do Firebase. Leva 5 minutos e é de graça.</p>
 
-<div id="importBar" class="import-bar" style="display:none;">
-  <span id="importMsg">✅ Plano recebido e carregado com sucesso!</span>
-  <button onclick="document.getElementById('importBar').style.display='none'">✕</button>
-</div>
+    <div class="setup-steps">
+      <div class="setup-step">Acesse <strong>firebase.google.com</strong> com sua conta Google e clique em <strong>"Criar um projeto"</strong>. Dê qualquer nome (ex: <code>giovanni-planner</code>). Desative o Google Analytics se quiser. Clique em <strong>Criar projeto</strong>.</div>
+      <div class="setup-step">No menu lateral clique em <strong>Realtime Database</strong> → <strong>Criar banco de dados</strong> → Escolha o servidor (qualquer um) → Selecione <strong>"Iniciar no modo de teste"</strong> → <strong>Ativar</strong>.</div>
+      <div class="setup-step">O link do banco aparecerá no topo, assim: <code>https://nome-do-projeto-default-rtdb.firebaseio.com</code>. Copie esse link.</div>
+      <div class="setup-step">Cole o link abaixo e clique em <strong>Conectar e Salvar</strong>. Pronto — Giovanni e Pai compartilham o mesmo planejador!</div>
+    </div>
 
-<div class="val-bar" id="valBar">
-  ⏳ Modo Validação ativo — clique nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.
-</div>
-
-<nav class="tabs">
-  <button class="tab-btn active" onclick="setTab('agenda')">📅 Agenda Semanal</button>
-  <button class="tab-btn" onclick="setTab('plano')">🗓️ Plano Set–Fev</button>
-  <button class="tab-btn" onclick="setTab('materias')">📚 Matérias</button>
-</nav>
-
-<div class="tab-pane active" id="tab-agenda">
-  <div class="info-bar" id="infoBar">
-    💡 <strong>Giovanni:</strong> clique nos blocos cinza para escolher a matéria e propor o horário de estudo.
-  </div>
-  <div class="day-nav">
-    <button class="day-btn active" onclick="setDay('seg')">Segunda</button>
-    <button class="day-btn" onclick="setDay('ter')">Terça</button>
-    <button class="day-btn" onclick="setDay('qua')">Quarta</button>
-    <button class="day-btn" onclick="setDay('qui')">Quinta</button>
-    <button class="day-btn" onclick="setDay('sex')">Sexta</button>
-    <button class="day-btn" onclick="setDay('sab')">Sábado</button>
-    <button class="day-btn" onclick="setDay('dom')">Domingo</button>
-  </div>
-  <div class="timeline" id="timeline"></div>
-</div>
-
-<div class="tab-pane" id="tab-plano">
-  <div class="plan-summary" id="planSummary"></div>
-  <div class="months-grid" id="monthsGrid"></div>
-</div>
-
-<div class="tab-pane" id="tab-materias">
-  <div class="mat-pad">
-    <div class="mat-h">Horas por Matéria — Semana Atual</div>
-    <div class="sub-cards" id="subCards"></div>
-    <div class="mat-h">Registro Diário (horas)</div>
-    <div class="wk-grid" id="wkGrid"></div>
+    <div class="setup-err" id="setupErr"></div>
+    <input class="setup-input" id="fbUrlInput" type="url" placeholder="https://seu-projeto-default-rtdb.firebaseio.com">
+    <button class="setup-btn" id="setupBtn" onclick="configureFB()">🔥 Conectar e Salvar</button>
+    <p class="setup-note">Seus dados ficam no seu próprio banco de dados Firebase. Nem o Anthropic nem ninguém mais tem acesso.</p>
   </div>
 </div>
 
-<!-- EDIT MODAL -->
-<div class="overlay" id="overlay" onclick="closeOverlay(event)">
-  <div class="modal">
-    <div class="modal-h" id="modalH">Editar Horário de Estudo</div>
-    <div class="modal-sub" id="modalSub"></div>
-    <div id="gioFields">
-      <label class="form-label">Matéria</label>
-      <select class="form-ctrl" id="subSel"></select>
-      <label class="form-label">O que vai estudar neste bloco?</label>
-      <textarea class="form-ctrl" id="noteInp" placeholder="Ex: Cap. 5 de Biologia, questões de vestibular..."></textarea>
-      <div class="modal-acts">
-        <button class="btn btn-can" onclick="closeModal()">Cancelar</button>
-        <button class="btn btn-pri" onclick="saveSlot()">💾 Propor Horário</button>
+<!-- ═══════════════════════════════════════════
+     APP
+════════════════════════════════════════════ -->
+<div id="app">
+  <header class="hdr">
+    <div>
+      <div class="hdr-title">Planejador · Giovanni M. J. Afonso</div>
+      <div class="hdr-sub">Set 2025 – Fev 2026 · Medicina · TOEFL · Esporte</div>
+    </div>
+    <div class="hdr-right">
+      <span class="hdr-sync" id="syncStatus">⟳ conectando…</span>
+      <span class="pending-pill" id="pendingPill">0</span>
+      <button class="icon-btn" onclick="fbLoad(true)">🔄</button>
+      <button class="icon-btn" id="modeBtn" onclick="toggleMode()">🔒 Modo Pai</button>
+    </div>
+  </header>
+
+  <div class="val-bar" id="valBar">
+    ⏳ Modo Validação ativo — clique nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.
+  </div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="setTab('agenda')">📅 Agenda Semanal</button>
+    <button class="tab-btn" onclick="setTab('plano')">🗓️ Plano Set–Fev</button>
+    <button class="tab-btn" onclick="setTab('materias')">📚 Matérias</button>
+  </nav>
+
+  <div class="tab-pane active" id="tab-agenda">
+    <div class="info-bar" id="infoBar">
+      💡 <strong>Giovanni:</strong> clique nos blocos cinza para escolher a matéria e propor o horário de estudo.
+    </div>
+    <div class="day-nav">
+      <button class="day-btn active" onclick="setDay('seg')">Segunda</button>
+      <button class="day-btn" onclick="setDay('ter')">Terça</button>
+      <button class="day-btn" onclick="setDay('qua')">Quarta</button>
+      <button class="day-btn" onclick="setDay('qui')">Quinta</button>
+      <button class="day-btn" onclick="setDay('sex')">Sexta</button>
+      <button class="day-btn" onclick="setDay('sab')">Sábado</button>
+      <button class="day-btn" onclick="setDay('dom')">Domingo</button>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+
+  <div class="tab-pane" id="tab-plano">
+    <div class="plan-summary" id="planSummary"></div>
+    <div class="months-grid" id="monthsGrid"></div>
+  </div>
+
+  <div class="tab-pane" id="tab-materias">
+    <div class="mat-pad">
+      <div class="mat-h">Horas por Matéria — Semana Atual</div>
+      <div class="sub-cards" id="subCards"></div>
+      <div class="mat-h">Registro Diário (horas)</div>
+      <div class="wk-grid" id="wkGrid"></div>
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="overlay" id="overlay" onclick="closeOverlay(event)">
+    <div class="modal">
+      <div class="modal-h" id="modalH">Editar Horário de Estudo</div>
+      <div class="modal-sub" id="modalSub"></div>
+      <div id="gioFields">
+        <label class="form-label">Matéria</label>
+        <select class="form-ctrl" id="subSel"></select>
+        <label class="form-label">O que vai estudar neste bloco?</label>
+        <textarea class="form-ctrl" id="noteInp" placeholder="Ex: Cap. 5 de Biologia, questões de vestibular..."></textarea>
+        <div class="modal-acts">
+          <button class="btn btn-can" onclick="closeModal()">Cancelar</button>
+          <button class="btn btn-pri" onclick="saveSlot()">💾 Propor Horário</button>
+        </div>
+      </div>
+      <div id="paiFields" style="display:none">
+        <label class="form-label">Proposta do Giovanni</label>
+        <div class="proposal-box" id="proposalBox"></div>
+        <label class="form-label">Observação para o Giovanni (opcional)</label>
+        <textarea class="form-ctrl" id="valNoteInp" placeholder="Feedback ou sugestão..."></textarea>
+        <div class="modal-acts">
+          <button class="btn btn-can" onclick="closeModal()">Fechar</button>
+          <button class="btn btn-no" onclick="rejectSlot()">❌ Pedir Revisão</button>
+          <button class="btn btn-ok" onclick="approveSlot()">✅ Aprovar</button>
+        </div>
       </div>
     </div>
-    <div id="paiFields" style="display:none">
-      <label class="form-label">Proposta do Giovanni</label>
-      <div class="proposal-box" id="proposalBox"></div>
-      <label class="form-label">Observação para o Giovanni (opcional)</label>
-      <textarea class="form-ctrl" id="valNoteInp" placeholder="Feedback ou sugestão..."></textarea>
-      <div class="modal-acts">
-        <button class="btn btn-can" onclick="closeModal()">Fechar</button>
-        <button class="btn btn-no" onclick="rejectSlot()">❌ Pedir Revisão</button>
-        <button class="btn btn-ok" onclick="approveSlot()">✅ Aprovar</button>
-      </div>
-    </div>
   </div>
-</div>
 
-<!-- SHARE MODAL -->
-<div class="overlay" id="shareOverlay" onclick="closeShareOverlay(event)">
-  <div class="modal">
-    <div class="modal-h">📤 Compartilhar Plano</div>
-    <div class="modal-sub" id="shareModalSub">Copie o link abaixo e envie via WhatsApp</div>
-    <label class="form-label">Link com o plano atual</label>
-    <textarea class="form-ctrl" id="shareUrlTa" readonly style="height:90px;font-size:10.5px;word-break:break-all;background:#f8fafc;"></textarea>
-    <div class="modal-acts">
-      <button class="btn btn-can" onclick="closeShare()">Fechar</button>
-      <button class="btn btn-grn" id="copyBtn" onclick="copyLink()">📋 Copiar Link</button>
-    </div>
-    <div class="share-hint">
-      📱 <strong>Como funciona:</strong> copie o link e mande pelo WhatsApp.
-      Quem abrir o link verá o plano exatamente como está agora.<br><br>
-      🔄 Quando o pai aprovar os horários, ele gera um novo link e manda de volta para o Giovanni.
-    </div>
-  </div>
-</div>
+  <div class="toast" id="toast"></div>
 
-<footer class="footer">
-  Planejador Pessoal · Giovanni M. J. Afonso · Set 2025 – Fev 2026
-  &nbsp;·&nbsp; <a href="tutorial.html" style="color:var(--lt);">📖 Ver Tutorial</a>
-</footer>
+  <footer class="footer">
+    <span>Planejador · Giovanni M. J. Afonso · Set 2025 – Fev 2026</span>
+    <a href="tutorial.html">📖 Tutorial</a>
+    <button class="reset-link" onclick="resetConfig()">⚙️ Reconfigurar Firebase</button>
+  </footer>
+</div>
 
 <script>
-const DAYS=['seg','ter','qua','qui','sex','sab','dom'];
-const DAY_LABEL={seg:'Segunda-feira',ter:'Terça-feira',qua:'Quarta-feira',qui:'Quinta-feira',sex:'Sexta-feira',sab:'Sábado',dom:'Domingo'};
+// ══════════════════════════════════════════════
+//  FIREBASE CONFIG
+// ══════════════════════════════════════════════
+const CFG_KEY = 'gio_fb_url';
+let FB_URL = localStorage.getItem(CFG_KEY);
 
-const FIXED={
-  seg:[{s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},{s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'},{s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}],
-  ter:[{s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},{s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'},{s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'},{s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}],
-  qua:[{s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},{s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'},{s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'14:30',e:'16:00',label:'Boxe',t:'box',i:'🥊'},{s:'17:00',e:'18:00',label:'Terapia — Lidiane',t:'ther',i:'🧠',n:'Sessão semanal'},{s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}],
-  qui:[{s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},{s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'},{s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'},{s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}],
-  sex:[{s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},{s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'},{s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'},{s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}],
-  sab:[{s:'08:30',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️',n:'Fim de semana'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'14:30',e:'16:00',label:'Boxe',t:'box',i:'🥊'},{s:'16:00',e:'16:30',label:'Lanche + Banho',t:'rest',i:'🚿'},{s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}],
-  dom:[{s:'09:00',e:'10:00',label:'Acordar & Café da manhã',t:'meal',i:'☀️',n:'Domingo sem pressa'},{s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'},{s:'14:00',e:'17:00',label:'Organização + Marmitas',t:'rest',i:'🏠',n:'Lavar roupa, arrumar, preparar a semana'},{s:'18:00',e:'20:00',label:'Jogo do Flamengo ⚽ 🔴⚫',t:'fla',i:'⚽',n:'Momento sagrado!'},{s:'20:30',e:'21:00',label:'Jantar',t:'meal',i:'🍽️'},{s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}]
+async function configureFB() {
+  const btn = document.getElementById('setupBtn');
+  const err = document.getElementById('setupErr');
+  let url = document.getElementById('fbUrlInput').value.trim().replace(/\/+$/, '');
+  err.style.display = 'none';
+
+  if (!url || !url.includes('firebaseio.com')) {
+    err.textContent = '⚠️ URL inválida. Deve terminar com .firebaseio.com';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = '⟳ Testando conexão…';
+  btn.disabled = true;
+
+  try {
+    const resp = await fetch(`${url}/giovanni_test.json`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ok: true })
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    FB_URL = url;
+    localStorage.setItem(CFG_KEY, url);
+    initApp();
+  } catch (e) {
+    err.textContent = '❌ Não foi possível conectar. Verifique a URL e confirme que o banco está em "modo de teste".';
+    err.style.display = 'block';
+    btn.textContent = '🔥 Conectar e Salvar';
+    btn.disabled = false;
+  }
+}
+
+function resetConfig() {
+  if (confirm('Isso vai desconectar do Firebase e pedir a URL novamente. Continuar?')) {
+    localStorage.removeItem(CFG_KEY);
+    FB_URL = null;
+    document.getElementById('setupScreen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  }
+}
+
+function initApp() {
+  document.getElementById('setupScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadST();
+  fbLoad(false);
+  setInterval(() => fbLoad(false), 30000); // auto-refresh every 30s
+}
+
+// ══════════════════════════════════════════════
+//  FIREBASE SYNC
+// ══════════════════════════════════════════════
+function setSyncStatus(state, msg) {
+  const el = document.getElementById('syncStatus');
+  el.className = 'hdr-sync ' + state;
+  el.textContent = msg;
+}
+
+async function fbLoad(showToast) {
+  if (!FB_URL) return;
+  setSyncStatus('syncing', '⟳ sincronizando…');
+  try {
+    const resp = await fetch(`${FB_URL}/giovanni.json`);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    if (data && typeof data === 'object') {
+      if (data.slots)  ST.slots  = data.slots;
+      if (data.months) ST.months = data.months;
+      if (data.hrs)    ST.hrs    = data.hrs;
+      MONTHS.forEach(m  => { if (!ST.months[m.id])  ST.months[m.id]  = { eng: false, ma: null, notes: '' }; });
+      SUBJECTS_DEF.forEach(s => { if (!ST.hrs[s.id]) ST.hrs[s.id] = { seg: 0, ter: 0, qua: 0, qui: 0, sex: 0 }; });
+      saveST();
+      renderCurrent();
+      updatePending();
+    }
+    const now = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    setSyncStatus('ok', '✅ ' + now);
+    if (showToast) showToastMsg('Planejador atualizado!');
+  } catch (e) {
+    setSyncStatus('err', '⚠️ offline');
+    if (showToast) showToastMsg('Sem conexão — dados locais.');
+  }
+}
+
+let saveTimer = null;
+async function fbSave() {
+  if (!FB_URL) return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    setSyncStatus('syncing', '⟳ salvando…');
+    try {
+      const data = { slots: ST.slots, months: ST.months, hrs: ST.hrs };
+      const resp = await fetch(`${FB_URL}/giovanni.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const now = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      setSyncStatus('ok', '✅ ' + now);
+    } catch (e) {
+      setSyncStatus('err', '⚠️ erro ao salvar');
+    }
+  }, 800);
+}
+
+function showToastMsg(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ══════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════
+const DAYS = ['seg','ter','qua','qui','sex','sab','dom'];
+const DAY_LABEL = { seg:'Segunda-feira', ter:'Terça-feira', qua:'Quarta-feira', qui:'Quinta-feira', sex:'Sexta-feira', sab:'Sábado', dom:'Domingo' };
+
+const FIXED = {
+  seg:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
+  ter:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
+  qua:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'14:30',e:'16:00',label:'Boxe',t:'box',i:'🥊'}, {s:'17:00',e:'18:00',label:'Terapia — Lidiane',t:'ther',i:'🧠',n:'Sessão semanal'}, {s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
+  qui:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
+  sex:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
+  sab:[ {s:'08:30',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️',n:'Fim de semana'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'14:30',e:'16:00',label:'Boxe',t:'box',i:'🥊'}, {s:'16:00',e:'16:30',label:'Lanche + Banho',t:'rest',i:'🚿'}, {s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
+  dom:[ {s:'09:00',e:'10:00',label:'Acordar & Café da manhã',t:'meal',i:'☀️',n:'Domingo sem pressa'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'14:00',e:'17:00',label:'Organização + Marmitas',t:'rest',i:'🏠',n:'Lavar roupa, arrumar, preparar a semana'}, {s:'18:00',e:'20:00',label:'Jogo do Flamengo ⚽ 🔴⚫',t:'fla',i:'⚽',n:'Momento sagrado!'}, {s:'20:30',e:'21:00',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ]
 };
 
-const SLOTS={
-  seg:[{id:'seg_1',s:'14:00',e:'16:00',sug:'Biologia',hint:'Revisão teórica + exercícios — 2h'},{id:'seg_2',s:'16:00',e:'18:00',sug:'Química',hint:'Estudo + questões — 2h'},{id:'seg_3',s:'18:00',e:'19:30',sug:'Inglês / TOEFL',hint:'Listening, reading, vocabulário — 1h30'},{id:'seg_4',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões multidisciplinares — 1h30'}],
-  ter:[{id:'ter_1',s:'14:00',e:'15:30',sug:'Química',hint:'Estudo e exercícios — 1h30'},{id:'ter_2',s:'15:30',e:'17:30',sug:'Inglês / TOEFL',hint:'Writing e speaking — 2h'},{id:'ter_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões e revisão — 1h30'}],
-  qua:[{id:'qua_1',s:'16:00',e:'17:00',sug:'Inglês / TOEFL',hint:'Prática rápida antes da terapia — 1h'},{id:'qua_2',s:'18:00',e:'19:00',sug:'Redação',hint:'Texto dissertativo-argumentativo — 1h'},{id:'qua_3',s:'20:00',e:'21:30',sug:'Vestibular (Geral)',hint:'Revisão e questões — 1h30'}],
-  qui:[{id:'qui_1',s:'14:00',e:'16:00',sug:'Biologia',hint:'Anatomia, fisiologia, genética — 2h'},{id:'qui_2',s:'16:00',e:'18:00',sug:'Inglês / TOEFL',hint:'Leitura e compreensão — 2h'},{id:'qui_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões e revisão — 1h30'}],
-  sex:[{id:'sex_1',s:'14:00',e:'15:30',sug:'Redação',hint:'Prática de escrita e argumentação — 1h30'},{id:'sex_2',s:'15:30',e:'17:30',sug:'Inglês / TOEFL',hint:'Mock test parcial — 2h'},{id:'sex_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Revisão da semana — 1h30'}],
-  sab:[{id:'sab_1',s:'09:30',e:'11:00',sug:'Biologia / Química',hint:'Estudo intensivo — Bloco 1 — 1h30'},{id:'sab_2',s:'11:30',e:'12:30',sug:'Vestibular (Geral)',hint:'Questões — Bloco 2 — 1h'},{id:'sab_3',s:'17:00',e:'18:30',sug:'Redação',hint:'Texto completo com correção — 1h30'}],
-  dom:[{id:'dom_1',s:'10:00',e:'11:00',sug:'Vestibular (Geral)',hint:'Revisão — Bloco 1 — 1h'},{id:'dom_2',s:'11:30',e:'12:30',sug:'Inglês / TOEFL',hint:'Vocabulário e revisão — Bloco 2 — 1h'}]
+const SLOTS = {
+  seg:[ {id:'seg_1',s:'14:00',e:'16:00',sug:'Biologia',hint:'Revisão teórica + exercícios — 2h'}, {id:'seg_2',s:'16:00',e:'18:00',sug:'Química',hint:'Estudo + questões — 2h'}, {id:'seg_3',s:'18:00',e:'19:30',sug:'Inglês / TOEFL',hint:'Listening, reading, vocabulário — 1h30'}, {id:'seg_4',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões multidisciplinares — 1h30'} ],
+  ter:[ {id:'ter_1',s:'14:00',e:'15:30',sug:'Química',hint:'Estudo e exercícios — 1h30'}, {id:'ter_2',s:'15:30',e:'17:30',sug:'Inglês / TOEFL',hint:'Writing e speaking — 2h'}, {id:'ter_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões e revisão — 1h30'} ],
+  qua:[ {id:'qua_1',s:'16:00',e:'17:00',sug:'Inglês / TOEFL',hint:'Prática rápida antes da terapia — 1h'}, {id:'qua_2',s:'18:00',e:'19:00',sug:'Redação',hint:'Texto dissertativo-argumentativo — 1h'}, {id:'qua_3',s:'20:00',e:'21:30',sug:'Vestibular (Geral)',hint:'Revisão e questões — 1h30'} ],
+  qui:[ {id:'qui_1',s:'14:00',e:'16:00',sug:'Biologia',hint:'Anatomia, fisiologia, genética — 2h'}, {id:'qui_2',s:'16:00',e:'18:00',sug:'Inglês / TOEFL',hint:'Leitura e compreensão — 2h'}, {id:'qui_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões e revisão — 1h30'} ],
+  sex:[ {id:'sex_1',s:'14:00',e:'15:30',sug:'Redação',hint:'Prática de escrita e argumentação — 1h30'}, {id:'sex_2',s:'15:30',e:'17:30',sug:'Inglês / TOEFL',hint:'Mock test parcial — 2h'}, {id:'sex_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Revisão da semana — 1h30'} ],
+  sab:[ {id:'sab_1',s:'09:30',e:'11:00',sug:'Biologia / Química',hint:'Estudo intensivo — Bloco 1 — 1h30'}, {id:'sab_2',s:'11:30',e:'12:30',sug:'Vestibular (Geral)',hint:'Questões — Bloco 2 — 1h'}, {id:'sab_3',s:'17:00',e:'18:30',sug:'Redação',hint:'Texto completo com correção — 1h30'} ],
+  dom:[ {id:'dom_1',s:'10:00',e:'11:00',sug:'Vestibular (Geral)',hint:'Revisão — Bloco 1 — 1h'}, {id:'dom_2',s:'11:30',e:'12:30',sug:'Inglês / TOEFL',hint:'Vocabulário e revisão — Bloco 2 — 1h'} ]
 };
 
-const MONTHS=[{id:'set',name:'Setembro',yr:2025},{id:'out',name:'Outubro',yr:2025},{id:'nov',name:'Novembro',yr:2025},{id:'dez',name:'Dezembro',yr:2025},{id:'jan',name:'Janeiro',yr:2026},{id:'fev',name:'Fevereiro',yr:2026}];
-const SUBJECTS_DEF=[{id:'bio',lbl:'Biologia',ico:'🔬',cls:'sc-bio',dot:'#059669',goal:4},{id:'qui',lbl:'Química',ico:'🧪',cls:'sc-qui',dot:'#DC2626',goal:4},{id:'red',lbl:'Redação',ico:'✍️',cls:'sc-red',dot:'#F57C00',goal:3},{id:'eng',lbl:'Inglês / TOEFL',ico:'🇺🇸',cls:'sc-eng',dot:'#3F51B5',goal:5},{id:'vest',lbl:'Vestibular (Geral)',ico:'🩺',cls:'sc-vest',dot:'#E91E63',goal:7}];
-const SUB_OPTIONS=['Biologia','Química','Redação','Inglês / TOEFL','Vestibular (Geral)','Revisão Geral','A definir'];
-const SUB_CLS={'Biologia':'sub-bio','Química':'sub-qui','Redação':'sub-red','Inglês / TOEFL':'sub-eng','Vestibular (Geral)':'sub-vest','Biologia / Química':'sub-bio','Revisão Geral':'sub-rev'};
+const MONTHS = [ {id:'set',name:'Setembro',yr:2025}, {id:'out',name:'Outubro',yr:2025}, {id:'nov',name:'Novembro',yr:2025}, {id:'dez',name:'Dezembro',yr:2025}, {id:'jan',name:'Janeiro',yr:2026}, {id:'fev',name:'Fevereiro',yr:2026} ];
+const SUBJECTS_DEF = [ {id:'bio',lbl:'Biologia',ico:'🔬',cls:'sc-bio',dot:'#059669',goal:4}, {id:'qui',lbl:'Química',ico:'🧪',cls:'sc-qui',dot:'#DC2626',goal:4}, {id:'red',lbl:'Redação',ico:'✍️',cls:'sc-red',dot:'#F57C00',goal:3}, {id:'eng',lbl:'Inglês / TOEFL',ico:'🇺🇸',cls:'sc-eng',dot:'#3F51B5',goal:5}, {id:'vest',lbl:'Vestibular (Geral)',ico:'🩺',cls:'sc-vest',dot:'#E91E63',goal:7} ];
+const SUB_OPTIONS = ['Biologia','Química','Redação','Inglês / TOEFL','Vestibular (Geral)','Revisão Geral','A definir'];
+const SUB_CLS = {'Biologia':'sub-bio','Química':'sub-qui','Redação':'sub-red','Inglês / TOEFL':'sub-eng','Vestibular (Geral)':'sub-vest','Biologia / Química':'sub-bio','Revisão Geral':'sub-rev'};
 
-let ST={tab:'agenda',day:'seg',mode:'gio',editId:null,slots:{},months:{},hrs:{}};
+// ══════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════
+let ST = { tab:'agenda', day:'seg', mode:'gio', editId:null, slots:{}, months:{}, hrs:{} };
 
-function loadST(){
-  try{const d=JSON.parse(localStorage.getItem('gio26')||'{}');ST.slots=d.slots||{};ST.months=d.months||{};ST.hrs=d.hrs||{};}catch(e){}
-  MONTHS.forEach(m=>{if(!ST.months[m.id])ST.months[m.id]={eng:false,ma:null,notes:''};});
-  SUBJECTS_DEF.forEach(s=>{if(!ST.hrs[s.id])ST.hrs[s.id]={seg:0,ter:0,qua:0,qui:0,sex:0};});
+function loadST() {
+  try { const d = JSON.parse(localStorage.getItem('gio26') || '{}'); ST.slots = d.slots || {}; ST.months = d.months || {}; ST.hrs = d.hrs || {}; } catch (e) {}
+  MONTHS.forEach(m => { if (!ST.months[m.id]) ST.months[m.id] = { eng: false, ma: null, notes: '' }; });
+  SUBJECTS_DEF.forEach(s => { if (!ST.hrs[s.id]) ST.hrs[s.id] = { seg: 0, ter: 0, qua: 0, qui: 0, sex: 0 }; });
 }
-function saveST(){try{localStorage.setItem('gio26',JSON.stringify({slots:ST.slots,months:ST.months,hrs:ST.hrs}));}catch(e){}}
-
-// URL SHARE
-function encodeState(){
-  const data={slots:ST.slots,months:ST.months,hrs:ST.hrs};
-  return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-}
-function decodeState(enc){
-  return JSON.parse(decodeURIComponent(escape(atob(enc))));
-}
-function importFromURL(){
-  const hash=location.hash;
-  const m=hash.match(/[#&]s=([^&]+)/);
-  if(!m)return;
-  try{
-    const data=decodeState(m[1]);
-    if(data.slots)ST.slots=data.slots;
-    if(data.months)ST.months=data.months;
-    if(data.hrs)ST.hrs=data.hrs;
-    saveST();
-    const senderMatch=hash.match(/[#&]de=([^&]+)/);
-    const sender=senderMatch?decodeURIComponent(senderMatch[1]):'';
-    const bar=document.getElementById('importBar');
-    document.getElementById('importMsg').textContent=sender?'✅ Plano recebido de '+sender+'! Verifique as atualizações.':'✅ Plano recebido e carregado com sucesso!';
-    bar.style.display='flex';
-    history.replaceState(null,'',location.pathname);
-  }catch(e){}
+function saveST() {
+  try { localStorage.setItem('gio26', JSON.stringify({ slots: ST.slots, months: ST.months, hrs: ST.hrs })); } catch (e) {}
+  fbSave();
 }
 
-function openShare(){
-  const sender=ST.mode==='gio'?'Giovanni':'Pai';
-  const enc=encodeState();
-  const url=location.origin+location.pathname+'#s='+enc+'&de='+encodeURIComponent(sender);
-  document.getElementById('shareModalSub').textContent=ST.mode==='gio'?'Copie e envie para o Pai via WhatsApp':'Copie e envie para o Giovanni via WhatsApp';
-  document.getElementById('shareUrlTa').value=url;
-  document.getElementById('shareOverlay').classList.add('open');
+// ══════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════
+function renderCurrent() {
+  if (ST.tab === 'agenda') renderTimeline();
+  if (ST.tab === 'plano') renderPlanner();
+  if (ST.tab === 'materias') renderMaterias();
 }
-function closeShare(){document.getElementById('shareOverlay').classList.remove('open');}
-function closeShareOverlay(e){if(e.target===document.getElementById('shareOverlay'))closeShare();}
-async function copyLink(){
-  const url=document.getElementById('shareUrlTa').value;
-  const btn=document.getElementById('copyBtn');
-  if(navigator.share){try{await navigator.share({title:'Planejador Giovanni',url});return;}catch(e){}}
-  try{
-    await navigator.clipboard.writeText(url);
-    btn.textContent='✅ Copiado!';setTimeout(()=>btn.textContent='📋 Copiar Link',2500);
-  }catch(e){document.getElementById('shareUrlTa').select();}
+function setTab(t) {
+  ST.tab = t;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', ['agenda','plano','materias'][i] === t));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + t).classList.add('active');
+  renderCurrent();
 }
-
-function setTab(t){
-  ST.tab=t;
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['agenda','plano','materias'][i]===t));
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+t).classList.add('active');
-  if(t==='agenda')renderTimeline();
-  if(t==='plano')renderPlanner();
-  if(t==='materias')renderMaterias();
-}
-function setDay(d){
-  ST.day=d;
-  document.querySelectorAll('.day-btn').forEach((b,i)=>b.classList.toggle('active',DAYS[i]===d));
+function setDay(d) {
+  ST.day = d;
+  document.querySelectorAll('.day-btn').forEach((b, i) => b.classList.toggle('active', DAYS[i] === d));
   renderTimeline();
 }
-function toggleMode(){
-  ST.mode=ST.mode==='gio'?'pai':'gio';
-  const btn=document.getElementById('modeBtn');
-  btn.textContent=ST.mode==='pai'?'👨 Modo Giovanni':'🔒 Modo Pai';
-  btn.classList.toggle('val',ST.mode==='pai');
-  document.getElementById('valBar').classList.toggle('show',ST.mode==='pai');
-  const ib=document.getElementById('infoBar');
-  ib.innerHTML=ST.mode==='pai'?'🔒 <strong>Modo Pai:</strong> clique nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.':'💡 <strong>Giovanni:</strong> clique nos blocos cinza para escolher a matéria e propor o horário de estudo.';
-  updatePending();renderTimeline();
+function toggleMode() {
+  ST.mode = ST.mode === 'gio' ? 'pai' : 'gio';
+  const btn = document.getElementById('modeBtn');
+  btn.textContent = ST.mode === 'pai' ? '👨 Modo Giovanni' : '🔒 Modo Pai';
+  btn.classList.toggle('val', ST.mode === 'pai');
+  document.getElementById('valBar').classList.toggle('show', ST.mode === 'pai');
+  document.getElementById('infoBar').innerHTML = ST.mode === 'pai'
+    ? '🔒 <strong>Modo Pai:</strong> clique nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.'
+    : '💡 <strong>Giovanni:</strong> clique nos blocos cinza para escolher a matéria e propor o horário de estudo.';
+  updatePending(); renderTimeline();
 }
-function updatePending(){
-  const n=Object.values(ST.slots).filter(s=>s.status==='proposta').length;
-  const p=document.getElementById('pendingPill');
-  p.textContent=n+' proposta'+(n!==1?'s':'');
-  p.classList.toggle('show',n>0);
-}
-
-function renderTimeline(){
-  const day=ST.day;
-  const fixed=(FIXED[day]||[]).map(e=>({...e,fixed:true}));
-  const slots=(SLOTS[day]||[]).map(sl=>{const sv=ST.slots[sl.id]||{};return{...sl,fixed:false,subject:sv.subject||sl.sug,note:sv.note||'',status:sv.status||'sugestão',valNote:sv.valNote||''};});
-  const all=[...fixed,...slots].sort((a,b)=>(a.s||'').localeCompare(b.s||''));
-  document.getElementById('timeline').innerHTML=all.map(e=>e.fixed?renderFixed(e):renderSlot(e)).join('');
-}
-function renderFixed(e){
-  const t=e.e?`${e.s} – ${e.e}`:e.s;
-  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ev-${e.t}"><div class="ev-label">${e.i} ${e.label}</div>${e.n?`<div class="ev-note">${e.n}</div>`:''}</div></div>`;
-}
-function renderSlot(s){
-  const t=`${s.s} – ${s.e}`;const st=s.status;
-  let cls='slot-sug';
-  if(st==='proposta')cls='slot-prop';
-  else if(st==='aprovada')cls=SUB_CLS[s.subject]||'slot-apr';
-  else if(st==='rejeitada')cls='slot-rej';
-  const lbl=st==='sugestão'?`📖 ${s.subject} <em style="font-weight:400;font-size:11px;">(sugestão)</em>`:`📖 ${s.subject}`;
-  const hint=st==='sugestão'?`<div class="ev-note">${s.hint}</div>`:(s.note?`<div class="ev-note">${s.note}</div>`:'');
-  const vn=s.valNote?`<div class="ev-note" style="font-weight:600;margin-top:3px;">📝 ${s.valNote}</div>`:'';
-  const bdg={sugestão:`<span class="ev-badge" style="background:#E2E8F0;color:#475569;">💡 clique para editar</span>`,proposta:`<span class="ev-badge" style="background:#FEF9C3;color:#92400E;">⏳ aguardando validação</span>`,aprovada:`<span class="ev-badge" style="background:#DCFCE7;color:#14532D;">✅ aprovado</span>`,rejeitada:`<span class="ev-badge" style="background:#FEE2E2;color:#991B1B;">❌ revisar</span>`}[st]||'';
-  const clickable=(ST.mode==='gio'&&st!=='aprovada')||(ST.mode==='pai'&&st==='proposta');
-  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ${cls}${clickable?' ev-slot':''}" ${clickable?`onclick="openSlot('${s.id}')"`:''}><div class="ev-label">${lbl}</div>${hint}${vn}${bdg}</div></div>`;
+function updatePending() {
+  const n = Object.values(ST.slots).filter(s => s.status === 'proposta').length;
+  const p = document.getElementById('pendingPill');
+  p.textContent = n;
+  p.classList.toggle('show', n > 0);
 }
 
-function findSlot(id){for(const d of DAYS){const f=(SLOTS[d]||[]).find(s=>s.id===id);if(f)return f;}return null;}
-function openSlot(id){
-  const def=findSlot(id);if(!def)return;
-  const sv=ST.slots[id]||{};
-  const subject=sv.subject||def.sug,note=sv.note||'',status=sv.status||'sugestão';
-  ST.editId=id;
-  const isPai=ST.mode==='pai';
-  document.getElementById('gioFields').style.display=isPai?'none':'block';
-  document.getElementById('paiFields').style.display=isPai?'block':'none';
-  document.getElementById('modalH').textContent=isPai?'Validar Proposta':'Editar Horário de Estudo';
-  document.getElementById('modalSub').textContent=`${def.s} – ${def.e} · ${DAY_LABEL[ST.day]}`;
-  if(!isPai){const sel=document.getElementById('subSel');sel.innerHTML=SUB_OPTIONS.map(o=>`<option value="${o}"${o===subject?' selected':''}>${o}</option>`).join('');document.getElementById('noteInp').value=note;}
-  else{document.getElementById('proposalBox').textContent=subject+(note?' — '+note:'');document.getElementById('valNoteInp').value='';}
+// ══════════════════════════════════════════════
+//  TIMELINE
+// ══════════════════════════════════════════════
+function renderTimeline() {
+  const day = ST.day;
+  const fixed = (FIXED[day] || []).map(e => ({ ...e, fixed: true }));
+  const slots = (SLOTS[day] || []).map(sl => {
+    const sv = ST.slots[sl.id] || {};
+    return { ...sl, fixed: false, subject: sv.subject || sl.sug, note: sv.note || '', status: sv.status || 'sugestão', valNote: sv.valNote || '' };
+  });
+  const all = [...fixed, ...slots].sort((a, b) => (a.s || '').localeCompare(b.s || ''));
+  document.getElementById('timeline').innerHTML = all.map(e => e.fixed ? renderFixed(e) : renderSlot(e)).join('');
+}
+function renderFixed(e) {
+  const t = e.e ? `${e.s} – ${e.e}` : e.s;
+  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ev-${e.t}"><div class="ev-label">${e.i} ${e.label}</div>${e.n ? `<div class="ev-note">${e.n}</div>` : ''}</div></div>`;
+}
+function renderSlot(s) {
+  const t = `${s.s} – ${s.e}`; const st = s.status;
+  let cls = 'slot-sug';
+  if (st === 'proposta') cls = 'slot-prop';
+  else if (st === 'aprovada') cls = SUB_CLS[s.subject] || 'slot-apr';
+  else if (st === 'rejeitada') cls = 'slot-rej';
+  const lbl = st === 'sugestão' ? `📖 ${s.subject} <em style="font-weight:400;font-size:11px;">(sugestão)</em>` : `📖 ${s.subject}`;
+  const hint = st === 'sugestão' ? `<div class="ev-note">${s.hint}</div>` : (s.note ? `<div class="ev-note">${s.note}</div>` : '');
+  const vn = s.valNote ? `<div class="ev-note" style="font-weight:600;margin-top:3px;">📝 ${s.valNote}</div>` : '';
+  const bdg = { sugestão: `<span class="ev-badge" style="background:#E2E8F0;color:#475569;">💡 clique para editar</span>`, proposta: `<span class="ev-badge" style="background:#FEF9C3;color:#92400E;">⏳ aguardando validação</span>`, aprovada: `<span class="ev-badge" style="background:#DCFCE7;color:#14532D;">✅ aprovado</span>`, rejeitada: `<span class="ev-badge" style="background:#FEE2E2;color:#991B1B;">❌ revisar</span>` }[st] || '';
+  const clickable = (ST.mode === 'gio' && st !== 'aprovada') || (ST.mode === 'pai' && st === 'proposta');
+  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ${cls}${clickable ? ' ev-slot' : ''}" ${clickable ? `onclick="openSlot('${s.id}')"` : ''}><div class="ev-label">${lbl}</div>${hint}${vn}${bdg}</div></div>`;
+}
+
+// ══════════════════════════════════════════════
+//  MODAL
+// ══════════════════════════════════════════════
+function findSlot(id) { for (const d of DAYS) { const f = (SLOTS[d] || []).find(s => s.id === id); if (f) return f; } return null; }
+function openSlot(id) {
+  const def = findSlot(id); if (!def) return;
+  const sv = ST.slots[id] || {};
+  const subject = sv.subject || def.sug, note = sv.note || '';
+  ST.editId = id;
+  const isPai = ST.mode === 'pai';
+  document.getElementById('gioFields').style.display = isPai ? 'none' : 'block';
+  document.getElementById('paiFields').style.display = isPai ? 'block' : 'none';
+  document.getElementById('modalH').textContent = isPai ? 'Validar Proposta' : 'Editar Horário de Estudo';
+  document.getElementById('modalSub').textContent = `${def.s} – ${def.e} · ${DAY_LABEL[ST.day]}`;
+  if (!isPai) { const sel = document.getElementById('subSel'); sel.innerHTML = SUB_OPTIONS.map(o => `<option value="${o}"${o === subject ? ' selected' : ''}>${o}</option>`).join(''); document.getElementById('noteInp').value = note; }
+  else { document.getElementById('proposalBox').textContent = subject + (note ? ' — ' + note : ''); document.getElementById('valNoteInp').value = ''; }
   document.getElementById('overlay').classList.add('open');
 }
-function closeOverlay(e){if(e.target===document.getElementById('overlay'))closeModal();}
-function closeModal(){document.getElementById('overlay').classList.remove('open');ST.editId=null;}
-function saveSlot(){
-  const id=ST.editId;if(!id)return;
-  ST.slots[id]={subject:document.getElementById('subSel').value,note:document.getElementById('noteInp').value.trim(),status:'proposta'};
-  saveST();closeModal();updatePending();renderTimeline();
+function closeOverlay(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
+function closeModal() { document.getElementById('overlay').classList.remove('open'); ST.editId = null; }
+function saveSlot() {
+  const id = ST.editId; if (!id) return;
+  ST.slots[id] = { subject: document.getElementById('subSel').value, note: document.getElementById('noteInp').value.trim(), status: 'proposta' };
+  saveST(); closeModal(); updatePending(); renderTimeline();
 }
-function approveSlot(){
-  const id=ST.editId;if(!id)return;
-  ST.slots[id]={...ST.slots[id],status:'aprovada',valNote:document.getElementById('valNoteInp').value.trim()};
-  saveST();closeModal();updatePending();renderTimeline();
+function approveSlot() {
+  const id = ST.editId; if (!id) return;
+  ST.slots[id] = { ...ST.slots[id], status: 'aprovada', valNote: document.getElementById('valNoteInp').value.trim() };
+  saveST(); closeModal(); updatePending(); renderTimeline();
 }
-function rejectSlot(){
-  const id=ST.editId;if(!id)return;
-  ST.slots[id]={...ST.slots[id],status:'rejeitada',valNote:document.getElementById('valNoteInp').value.trim()};
-  saveST();closeModal();updatePending();renderTimeline();
+function rejectSlot() {
+  const id = ST.editId; if (!id) return;
+  ST.slots[id] = { ...ST.slots[id], status: 'rejeitada', valNote: document.getElementById('valNoteInp').value.trim() };
+  saveST(); closeModal(); updatePending(); renderTimeline();
 }
 
-function cntEng(){return MONTHS.filter(m=>ST.months[m.id]?.eng).length;}
-function cntMA(){return MONTHS.filter(m=>ST.months[m.id]?.ma).length;}
-function renderPlanner(){
-  const eM=MONTHS.filter(m=>ST.months[m.id]?.eng).map(m=>m.name).join(', ')||'Nenhum selecionado';
-  const maM=MONTHS.filter(m=>ST.months[m.id]?.ma).map(m=>`${m.name} (${ST.months[m.id].ma==='krav'?'Krav Maga':'Prof. Iam'})`).join(', ')||'Nenhum selecionado';
-  document.getElementById('planSummary').innerHTML=`<div class="ps-item"><div class="ps-label">🇺🇸 Inglês Presencial TOEFL (máx. 1 mês)</div><div class="ps-val">${eM}</div></div><div class="ps-item"><div class="ps-label">🥋 Artes Marciais (máx. 2 meses)</div><div class="ps-val">${maM}</div></div>`;
-  document.getElementById('monthsGrid').innerHTML=MONTHS.map(renderMC).join('');
+// ══════════════════════════════════════════════
+//  MONTH PLANNER
+// ══════════════════════════════════════════════
+function cntEng() { return MONTHS.filter(m => ST.months[m.id]?.eng).length; }
+function cntMA() { return MONTHS.filter(m => ST.months[m.id]?.ma).length; }
+function renderPlanner() {
+  const eM = MONTHS.filter(m => ST.months[m.id]?.eng).map(m => m.name).join(', ') || 'Nenhum selecionado';
+  const maM = MONTHS.filter(m => ST.months[m.id]?.ma).map(m => `${m.name} (${ST.months[m.id].ma === 'krav' ? 'Krav Maga' : 'Prof. Iam'})`).join(', ') || 'Nenhum selecionado';
+  document.getElementById('planSummary').innerHTML = `<div class="ps-item"><div class="ps-label">🇺🇸 Inglês Presencial TOEFL (máx. 1 mês)</div><div class="ps-val">${eM}</div></div><div class="ps-item"><div class="ps-label">🥋 Artes Marciais (máx. 2 meses)</div><div class="ps-val">${maM}</div></div>`;
+  document.getElementById('monthsGrid').innerHTML = MONTHS.map(renderMC).join('');
 }
-function renderMC(m){
-  const ms=ST.months[m.id];
-  const engFull=cntEng()>=1&&!ms.eng,maFull=cntMA()>=2&&!ms.ma;
-  const kravSel=ms.ma==='krav',iamSel=ms.ma==='iam';
-  const specTags=[ms.eng?'<span class="mc-tag" style="background:var(--eng);color:var(--eng-t);">🇺🇸 Inglês Presencial</span>':'',kravSel?'<span class="mc-tag" style="background:var(--box);color:var(--box-t);">🥋 Krav Maga</span>':'',iamSel?'<span class="mc-tag" style="background:var(--rev);color:var(--rev-t);">🥊 Prof. Iam</span>':''].join('');
-  return `<div class="mc${(ms.eng||ms.ma)?' has-act':''}" id="mc-${m.id}"><div class="mc-name">${m.name}</div><div class="mc-year">${m.yr}</div><div class="mc-fixed-tags"><span class="mc-tag t-uni">🎓 Faculdade</span><span class="mc-tag t-gym">💪 Academia</span><span class="mc-tag t-box">🥊 Boxe</span><span class="mc-tag t-ther">🧠 Terapia</span>${specTags}</div><div class="mc-sec-title">🇺🇸 Inglês Presencial — TOEFL</div><button class="opt-btn${ms.eng?' sel-eng':''}" onclick="toggleEng('${m.id}')" ${engFull?'disabled':''}><span class="opt-dot${ms.eng?' on':''}"></span>${ms.eng?'Selecionado ✓':engFull?'Já escolhido em outro mês':'Selecionar este mês'}</button><div class="mc-sec-title">🥋 Artes Marciais</div><button class="opt-btn${kravSel?' sel-krav':''}" onclick="toggleMA('${m.id}','krav')" ${!kravSel&&maFull?'disabled':''}><span class="opt-dot${kravSel?' on':''}"></span>${kravSel?'Krav Maga ✓':'Krav Maga'}</button><button class="opt-btn${iamSel?' sel-iam':''}" onclick="toggleMA('${m.id}','iam')" ${!iamSel&&maFull?'disabled':''}><span class="opt-dot${iamSel?' on':''}"></span>${iamSel?'Prof. Iam ✓':'Aulas com Prof. Iam'}</button><div class="mc-sec-title">📝 Objetivos do mês</div><textarea class="mc-notes" placeholder="O que quer focar neste mês? Provas? Conteúdos?" onchange="saveNote('${m.id}',this.value)">${ms.notes||''}</textarea></div>`;
+function renderMC(m) {
+  const ms = ST.months[m.id];
+  const engFull = cntEng() >= 1 && !ms.eng, maFull = cntMA() >= 2 && !ms.ma;
+  const kravSel = ms.ma === 'krav', iamSel = ms.ma === 'iam';
+  const specTags = [ms.eng ? '<span class="mc-tag" style="background:var(--eng);color:var(--eng-t);">🇺🇸 Inglês Presencial</span>' : '', kravSel ? '<span class="mc-tag" style="background:var(--box);color:var(--box-t);">🥋 Krav Maga</span>' : '', iamSel ? '<span class="mc-tag" style="background:var(--rev);color:var(--rev-t);">🥊 Prof. Iam</span>' : ''].join('');
+  return `<div class="mc${(ms.eng || ms.ma) ? ' has-act' : ''}" id="mc-${m.id}"><div class="mc-name">${m.name}</div><div class="mc-year">${m.yr}</div><div class="mc-fixed-tags"><span class="mc-tag t-uni">🎓 Faculdade</span><span class="mc-tag t-gym">💪 Academia</span><span class="mc-tag t-box">🥊 Boxe</span><span class="mc-tag t-ther">🧠 Terapia</span>${specTags}</div><div class="mc-sec-title">🇺🇸 Inglês Presencial — TOEFL</div><button class="opt-btn${ms.eng ? ' sel-eng' : ''}" onclick="toggleEng('${m.id}')" ${engFull ? 'disabled' : ''}><span class="opt-dot${ms.eng ? ' on' : ''}"></span>${ms.eng ? 'Selecionado ✓' : engFull ? 'Já escolhido em outro mês' : 'Selecionar este mês'}</button><div class="mc-sec-title">🥋 Artes Marciais</div><button class="opt-btn${kravSel ? ' sel-krav' : ''}" onclick="toggleMA('${m.id}','krav')" ${!kravSel && maFull ? 'disabled' : ''}><span class="opt-dot${kravSel ? ' on' : ''}"></span>${kravSel ? 'Krav Maga ✓' : 'Krav Maga'}</button><button class="opt-btn${iamSel ? ' sel-iam' : ''}" onclick="toggleMA('${m.id}','iam')" ${!iamSel && maFull ? 'disabled' : ''}><span class="opt-dot${iamSel ? ' on' : ''}"></span>${iamSel ? 'Prof. Iam ✓' : 'Aulas com Prof. Iam'}</button><div class="mc-sec-title">📝 Objetivos do mês</div><textarea class="mc-notes" placeholder="O que quer focar neste mês? Provas? Conteúdos?" onchange="saveNote('${m.id}',this.value)">${ms.notes || ''}</textarea></div>`;
 }
-function toggleEng(id){const ms=ST.months[id];if(!ms.eng&&cntEng()>=1)return;ms.eng=!ms.eng;saveST();renderPlanner();}
-function toggleMA(id,type){const ms=ST.months[id];if(ms.ma===type){ms.ma=null;}else{if(!ms.ma&&cntMA()>=2)return;ms.ma=type;}saveST();renderPlanner();}
-function saveNote(id,val){ST.months[id].notes=val;saveST();}
+function toggleEng(id) { const ms = ST.months[id]; if (!ms.eng && cntEng() >= 1) return; ms.eng = !ms.eng; saveST(); renderPlanner(); }
+function toggleMA(id, type) { const ms = ST.months[id]; if (ms.ma === type) { ms.ma = null; } else { if (!ms.ma && cntMA() >= 2) return; ms.ma = type; } saveST(); renderPlanner(); }
+function saveNote(id, val) { ST.months[id].notes = val; saveST(); }
 
-function getTotal(id){return['seg','ter','qua','qui','sex'].reduce((a,d)=>a+Number(ST.hrs[id]?.[d]||0),0);}
-function renderMaterias(){
-  document.getElementById('subCards').innerHTML=SUBJECTS_DEF.map(s=>{const hrs=getTotal(s.id),pct=Math.min(100,Math.round(hrs/s.goal*100));return`<div class="sc ${s.cls}"><div class="sc-ico">${s.ico}</div><div class="sc-name">${s.lbl}</div><div class="sc-hrs">${hrs}<span style="font-size:14px;font-weight:400;">h</span></div><div class="sc-goal">Meta: ${s.goal}h/semana</div><div class="sc-bar"><div class="sc-fill" style="width:${pct}%;background:currentColor;"></div></div></div>`;}).join('');
-  const wkDays=['seg','ter','qua','qui','sex'],dN=['Seg','Ter','Qua','Qui','Sex'];
-  document.getElementById('wkGrid').innerHTML=`<div class="wk-head"><div>Matéria</div>${dN.map(d=>`<div>${d}</div>`).join('')}<div>Total</div></div>`+SUBJECTS_DEF.map(s=>`<div class="wk-row"><div class="wk-sub"><span class="wk-dot" style="background:${s.dot}"></span>${s.ico} ${s.lbl}</div>${wkDays.map(d=>`<div><input class="hr-inp" type="number" min="0" max="8" step="0.5" value="${ST.hrs[s.id]?.[d]||''}" placeholder="0" onchange="setHr('${s.id}','${d}',this.value)"></div>`).join('')}<div class="wk-total">${getTotal(s.id)}h</div></div>`).join('');
+// ══════════════════════════════════════════════
+//  MATÉRIAS
+// ══════════════════════════════════════════════
+function getTotal(id) { return ['seg','ter','qua','qui','sex'].reduce((a, d) => a + Number(ST.hrs[id]?.[d] || 0), 0); }
+function renderMaterias() {
+  document.getElementById('subCards').innerHTML = SUBJECTS_DEF.map(s => {
+    const hrs = getTotal(s.id), pct = Math.min(100, Math.round(hrs / s.goal * 100));
+    return `<div class="sc ${s.cls}"><div class="sc-ico">${s.ico}</div><div class="sc-name">${s.lbl}</div><div class="sc-hrs">${hrs}<span style="font-size:13px;font-weight:400;">h</span></div><div class="sc-goal">Meta: ${s.goal}h/semana</div><div class="sc-bar"><div class="sc-fill" style="width:${pct}%;background:currentColor;"></div></div></div>`;
+  }).join('');
+  const wkDays = ['seg','ter','qua','qui','sex'], dN = ['Seg','Ter','Qua','Qui','Sex'];
+  document.getElementById('wkGrid').innerHTML = `<div class="wk-head"><div>Matéria</div>${dN.map(d => `<div>${d}</div>`).join('')}<div>Total</div></div>` + SUBJECTS_DEF.map(s => `<div class="wk-row"><div class="wk-sub"><span class="wk-dot" style="background:${s.dot}"></span>${s.ico} ${s.lbl}</div>${wkDays.map(d => `<div><input class="hr-inp" type="number" min="0" max="8" step="0.5" value="${ST.hrs[s.id]?.[d] || ''}" placeholder="0" onchange="setHr('${s.id}','${d}',this.value)"></div>`).join('')}<div class="wk-total">${getTotal(s.id)}h</div></div>`).join('');
 }
-function setHr(sid,day,val){ST.hrs[sid][day]=Number(val)||0;saveST();renderMaterias();}
+function setHr(sid, day, val) { ST.hrs[sid][day] = Number(val) || 0; saveST(); renderMaterias(); }
 
-loadST();importFromURL();renderTimeline();updatePending();
+// ══════════════════════════════════════════════
+//  BOOT
+// ══════════════════════════════════════════════
+if (FB_URL) {
+  initApp();
+} else {
+  document.getElementById('setupScreen').style.display = 'flex';
+}
 </script>
 </body>
 </html>
