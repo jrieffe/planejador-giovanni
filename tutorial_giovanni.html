@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1C1917">
+<title>Como usar — Planejador Giovanni</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1C1917;--bg:#FAF7F2;--muted:#78716C;--green:#16A34A;--amber:#F59E0B;--red:#E11D48;--blue:#3F51B5;--teal:#0D9488;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;font-size:16px;}
+
+/* HEADER */
+.hero{background:var(--ink);color:#fff;padding:env(safe-area-inset-top,20px) 20px 28px;text-align:center;}
+.hero h1{font-size:26px;font-weight:700;margin-bottom:6px;letter-spacing:-.02em;}
+.hero p{font-size:14px;opacity:.6;}
+.hero-btn{display:inline-block;margin-top:20px;background:#F59E0B;color:#1C1917;font-weight:700;font-size:15px;padding:12px 28px;border-radius:30px;text-decoration:none;}
+
+/* STEPS */
+.steps{padding:20px 16px 40px;}
+.step-card{background:#fff;border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);}
+.step-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.step-num{background:var(--ink);color:#fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;flex-shrink:0;}
+.step-header h2{font-size:18px;font-weight:700;line-height:1.2;}
+.step-card p{font-size:14.5px;color:var(--muted);line-height:1.65;margin-bottom:10px;}
+.step-card p:last-child{margin-bottom:0;}
+.step-card strong{color:var(--ink);}
+
+/* INSTALL STEPS */
+.install-steps{background:#F8FAFC;border-radius:12px;padding:14px;margin-top:4px;}
+.install-step{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #E2E8F0;font-size:14px;line-height:1.5;}
+.install-step:last-child{border-bottom:none;padding-bottom:0;}
+.install-step .n{background:#E2E8F0;color:#475569;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.install-step .txt strong{color:var(--ink);}
+
+/* BADGES */
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.badge{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;font-size:13px;font-weight:600;}
+.badge-cinza{background:#F1F5F9;color:#475569;}
+.badge-amar{background:#FFFBEB;color:#92400E;}
+.badge-verd{background:#DCFCE7;color:#14532D;}
+.badge-verm{background:#FEE2E2;color:#991B1B;}
+
+/* FLOW */
+.flow{margin-top:12px;}
+.flow-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #F1F5F9;font-size:14px;line-height:1.5;}
+.flow-row:last-child{border-bottom:none;}
+.flow-ico{font-size:22px;flex-shrink:0;width:30px;text-align:center;}
+
+/* TABS */
+.tabs-preview{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.tab-chip{background:#F1F5F9;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;color:#475569;}
+.tab-chip.active{background:var(--ink);color:#fff;}
+
+/* TIP */
+.tip{border-radius:10px;padding:12px 14px;font-size:13.5px;line-height:1.6;margin-top:10px;}
+.tip-amber{background:#FFFBEB;color:#92400E;border-left:3px solid #F59E0B;}
+.tip-green{background:#F0FDF4;color:#14532D;border-left:3px solid #22C55E;}
+.tip-blue{background:#EFF6FF;color:#1E40AF;border-left:3px solid #3B82F6;}
+.tip-red{background:#FFF5F5;color:#991B1B;border-left:3px solid #EF4444;}
+
+/* MA CHIPS */
+.ma-chips{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.ma-chip{border-radius:10px;padding:11px 14px;font-size:14px;font-weight:600;}
+.ma-muay{background:#FFF3E0;color:#7C2D12;}
+.ma-krav{background:#FEE2E2;color:#7F1D1D;}
+.ma-jiu{background:#EFF6FF;color:#1E3A8A;}
+
+/* FOOTER */
+.footer-cta{background:var(--ink);color:#fff;padding:28px 20px env(safe-area-inset-bottom,20px);text-align:center;}
+.footer-cta h3{font-size:20px;font-weight:700;margin-bottom:8px;}
+.footer-cta p{font-size:14px;opacity:.6;margin-bottom:18px;}
+.footer-cta a{display:inline-block;background:#F59E0B;color:#1C1917;font-weight:700;font-size:15px;padding:13px 32px;border-radius:30px;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>📅 Como usar o Planejador</h1>
+  <p>Guia rápido · Giovanni M. J. Afonso</p>
+  <a class="hero-btn" href="index.html">Abrir o Planejador →</a>
+</div>
+
+<div class="steps">
+
+  <!-- STEP 1: INSTALL -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <h2>Instalar no iPhone 📱</h2>
+    </div>
+    <p>Para ter o planejador como um app na tela do seu iPhone, sem precisar abrir o Safari toda vez:</p>
+    <div class="tip tip-red">⚠️ <strong>Importante:</strong> funciona APENAS no <strong>Safari</strong>. No Chrome ou Firefox não aparece a opção.</div>
+    <div class="install-steps">
+      <div class="install-step"><div class="n">1</div><div class="txt">Abra o planejador no <strong>Safari</strong></div></div>
+      <div class="install-step"><div class="n">2</div><div class="txt">Toque no ícone de compartilhar na parte de baixo da tela — é um <strong>quadrado com uma seta pra cima ⬆</strong></div></div>
+      <div class="install-step"><div class="n">3</div><div class="txt">Role a lista de baixo pra cima até encontrar <strong>"Adicionar à Tela de Início"</strong></div></div>
+      <div class="install-step"><div class="n">4</div><div class="txt">O nome já vai estar como <strong>"Planejador"</strong>. Toque em <strong>"Adicionar"</strong> no canto superior direito</div></div>
+      <div class="install-step"><div class="n">5</div><div class="txt">Pronto! O ícone aparece na sua tela igual a qualquer app 🎉</div></div>
+    </div>
+    <div class="tip tip-green" style="margin-top:12px;">✅ Depois de instalado, abre direto em tela cheia, sem barra do Safari.</div>
+  </div>
+
+  <!-- STEP 2: NAVIGATE -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <h2>Navegar pelo app</h2>
+    </div>
+    <p>O app tem três abas na parte de cima:</p>
+    <div class="tabs-preview">
+      <div class="tab-chip active">📅 Agenda Semanal</div>
+      <div class="tab-chip">🗓️ Plano Set–Fev</div>
+      <div class="tab-chip">📚 Matérias</div>
+    </div>
+    <p style="margin-top:12px;">Na <strong>Agenda Semanal</strong>, toque no dia da semana pra ver sua rotina e os blocos de estudo.</p>
+  </div>
+
+  <!-- STEP 3: FILL BLOCKS -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <h2>Preencher seus horários de estudo</h2>
+    </div>
+    <p>Os blocos têm 4 estados diferentes. Veja o que cada cor significa:</p>
+    <div class="badges">
+      <div class="badge badge-cinza">💡 Cinza = Sugestão (ainda não preenchido)</div>
+      <div class="badge badge-amar">⏳ Amarelo = Sua proposta (aguardando o pai)</div>
+      <div class="badge badge-verd">✅ Verde = Aprovado pelo pai</div>
+      <div class="badge badge-verm">❌ Vermelho = Revisar (comentário do pai)</div>
+    </div>
+    <div class="flow" style="margin-top:16px;">
+      <div class="flow-row"><div class="flow-ico">👆</div><div><strong>Toque num bloco cinza</strong> — uma janelinha abre</div></div>
+      <div class="flow-row"><div class="flow-ico">📖</div><div><strong>Escolha a matéria</strong> no menu (Inglês, Biologia, etc.)</div></div>
+      <div class="flow-row"><div class="flow-ico">✏️</div><div><strong>Escreva o que vai estudar</strong> — ex: "Cap. 5 de Biologia, cell division"</div></div>
+      <div class="flow-row"><div class="flow-ico">💾</div><div><strong>Toque em "Propor Horário"</strong> — o bloco fica amarelo</div></div>
+      <div class="flow-row"><div class="flow-ico">🔄</div><div><strong>Sincroniza na hora</strong> — seu pai já pode ver no celular dele</div></div>
+    </div>
+    <div class="tip tip-amber" style="margin-top:12px;">⏳ Bloco amarelo = está esperando seu pai ver e aprovar. Não precisa mandar nada por WhatsApp — aparece automático pra ele.</div>
+  </div>
+
+  <!-- STEP 4: VALIDATIONS -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <h2>Ver quando o pai validou</h2>
+    </div>
+    <p>Quando seu pai abrir o app e aprovar ou pedir revisão, você vê na hora só de atualizar:</p>
+    <div class="flow">
+      <div class="flow-row"><div class="flow-ico">✅</div><div><strong>Bloco verde</strong> = aprovado! Esse horário está confirmado no planejamento</div></div>
+      <div class="flow-row"><div class="flow-ico">❌</div><div><strong>Bloco vermelho</strong> = precisa revisar. Toque no bloco pra ver o comentário do pai, depois toque de novo pra mudar a matéria</div></div>
+      <div class="flow-row"><div class="flow-ico">🔄</div><div>Toque no botão <strong>🔄</strong> no canto superior direito a qualquer momento pra puxar as atualizações mais recentes</div></div>
+    </div>
+    <div class="tip tip-green">✅ Os dados ficam salvos mesmo se fechar o app. Tudo no Firebase, acessível de qualquer celular.</div>
+  </div>
+
+  <!-- STEP 5: MONTHLY PLAN -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <h2>Escolher Arte Marcial e Inglês</h2>
+    </div>
+    <p>Na aba <strong>🗓️ Plano Set–Fev</strong> você e seu pai escolhem em quais meses vai ter atividades extras:</p>
+    <div class="ma-chips">
+      <div class="ma-chip ma-muay">🥋 Muay Thai — Prof. Yan</div>
+      <div class="ma-chip ma-krav">🛡️ Krav Maga</div>
+      <div class="ma-chip ma-jiu">🥋 Jiu-Jitsu</div>
+    </div>
+    <p style="margin-top:12px;">Você pode selecionar até <strong>2 meses de arte marcial</strong> e <strong>1 mês de Inglês intensivo</strong> presencial. Depois mostra pro seu pai no app pra fechar o planejamento.</p>
+    <div class="tip tip-blue">💡 Cada card de mês também tem um campo de texto — escreva seus objetivos do mês, tipo "focar em Biologia antes do simulado".</div>
+  </div>
+
+  <!-- STEP 6: STUDY HOURS -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">6</div>
+      <h2>Registrar horas de estudo</h2>
+    </div>
+    <p>Na aba <strong>📚 Matérias</strong>, preencha quantas horas estudou de cada matéria em cada dia.</p>
+    <div class="flow">
+      <div class="flow-row"><div class="flow-ico">📊</div><div>Os cards no topo mostram o total da semana vs a meta</div></div>
+      <div class="flow-row"><div class="flow-ico">⌨️</div><div>Na tabela, coloque as horas em cada célula — pode usar 0.5 pra meia hora</div></div>
+      <div class="flow-row"><div class="flow-ico">📈</div><div>A barra de progresso fica verde conforme você se aproxima da meta</div></div>
+    </div>
+    <div class="tip tip-amber">🎯 Metas semanais: Inglês 6h · Bio 4h · Química 4h · Redação 3h · Português 3h</div>
+  </div>
+
+</div>
+
+<div class="footer-cta">
+  <h3>Bora estudar! 💪</h3>
+  <p>Qualquer dúvida, fala com seu pai.</p>
+  <a href="index.html">Abrir o Planejador</a>
+</div>
+
+</body>
+</html>

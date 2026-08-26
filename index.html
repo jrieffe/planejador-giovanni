@@ -5,10 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Planejador · Giovanni M. J. Afonso</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Planejador">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1C1917">
 <style>
 :root{
   --bg:#FAF7F2;--bg2:#EDE7DC;--ink:#1C1917;--muted:#57534E;--lt:#A8A29E;--r:8px;
-  --uni:#DBEAFE;--uni-b:#1D4ED8;--uni-t:#1E3A8A;
   --gym:#DCFCE7;--gym-b:#16A34A;--gym-t:#14532D;
   --box:#FFEDD5;--box-b:#EA580C;--box-t:#7C2D12;
   --meal:#FEF9C3;--meal-b:#CA8A04;--meal-t:#713F12;
@@ -20,7 +26,7 @@
   --qui:#FEE2E2;--qui-b:#DC2626;--qui-t:#7F1D1D;
   --red:#FFF3E0;--red-b:#F57C00;--red-t:#E65100;
   --eng:#E8EAF6;--eng-b:#3F51B5;--eng-t:#1A237E;
-  --vest:#FCE4EC;--vest-b:#E91E63;--vest-t:#880E4F;
+  --port:#CCFBF1;--port-b:#0D9488;--port-t:#134E4A;
   --rev:#F3E5F5;--rev-b:#9C27B0;--rev-t:#4A148C;
   --sug-bg:#F8FAFC;--sug-b:#CBD5E1;--sug-t:#475569;
   --prop-bg:#FFFBEB;--prop-b:#F59E0B;--prop-t:#78350F;
@@ -30,7 +36,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
 
-/* ── SETUP SCREEN ── */
+/* SETUP */
 #setupScreen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:24px;background:var(--bg);}
 .setup-card{background:#fff;border-radius:16px;padding:32px;max-width:500px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.12);}
 .setup-logo{font-size:48px;text-align:center;margin-bottom:16px;}
@@ -43,13 +49,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .setup-step code{background:#F1F5F9;padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11.5px;color:#1E40AF;}
 .setup-input{width:100%;padding:12px 14px;border:2px solid var(--bg2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);outline:none;margin-bottom:10px;}
 .setup-input:focus{border-color:var(--ink);}
-.setup-input::placeholder{color:var(--lt);}
 .setup-btn{width:100%;padding:13px;background:var(--ink);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
-.setup-btn:hover{opacity:.88;}
 .setup-err{background:#FFF5F5;border:1px solid #FC8181;border-radius:var(--r);padding:10px 14px;font-size:12.5px;color:#991B1B;margin-bottom:12px;display:none;}
 .setup-note{font-size:11px;color:var(--lt);text-align:center;margin-top:12px;line-height:1.5;}
 
-/* ── APP ── */
+/* APP */
 #app{display:none;}
 .hdr{background:var(--ink);color:#fff;padding:14px 16px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
 .hdr-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;}
@@ -84,7 +88,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .ev-badge{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:5px;letter-spacing:.05em;text-transform:uppercase;}
 .ev-slot{cursor:pointer;}
 .ev-slot:hover{transform:translateX(2px);opacity:.88;}
-.ev-uni{background:var(--uni);border-color:var(--uni-b);color:var(--uni-t);}
 .ev-gym{background:var(--gym);border-color:var(--gym-b);color:var(--gym-t);}
 .ev-box{background:var(--box);border-color:var(--box-b);color:var(--box-t);}
 .ev-meal{background:var(--meal);border-color:var(--meal-b);color:var(--meal-t);}
@@ -100,7 +103,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .sub-qui{background:var(--qui);border-color:var(--qui-b);color:var(--qui-t);}
 .sub-red{background:var(--red);border-color:var(--red-b);color:var(--red-t);}
 .sub-eng{background:var(--eng);border-color:var(--eng-b);color:var(--eng-t);}
-.sub-vest{background:var(--vest);border-color:var(--vest-b);color:var(--vest-t);}
+.sub-port{background:var(--port);border-color:var(--port-b);color:var(--port-t);}
 .sub-rev{background:var(--rev);border-color:var(--rev-b);color:var(--rev-t);}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:center;justify-content:center;padding:20px;}
 .overlay.open{display:flex;}
@@ -129,7 +132,7 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .mc-year{font-size:10px;color:var(--lt);margin-top:1px;margin-bottom:10px;}
 .mc-fixed-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
 .mc-tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;}
-.t-uni{background:var(--uni);color:var(--uni-t);}
+.t-est{background:var(--eng);color:var(--eng-t);}
 .t-gym{background:var(--gym);color:var(--gym-t);}
 .t-box{background:var(--box);color:var(--box-t);}
 .t-ther{background:var(--ther);color:var(--ther-t);}
@@ -138,6 +141,9 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .opt-btn:hover:not(:disabled){background:var(--bg);}
 .opt-btn:disabled{opacity:.38;cursor:not-allowed;}
 .opt-btn.sel-eng{background:var(--eng);border-color:var(--eng-b);color:var(--eng-t);font-weight:700;}
+.opt-btn.sel-muay{background:#FFF3E0;border-color:#EA580C;color:#7C2D12;font-weight:700;}
+.opt-btn.sel-krav{background:#FEE2E2;border-color:#DC2626;color:#7F1D1D;font-weight:700;}
+.opt-btn.sel-jiu{background:#EFF6FF;border-color:#1D4ED8;color:#1E3A8A;font-weight:700;}
 .opt-btn.sel-krav{background:var(--box);border-color:var(--box-b);color:var(--box-t);font-weight:700;}
 .opt-btn.sel-iam{background:var(--rev);border-color:var(--rev-b);color:var(--rev-t);font-weight:700;}
 .opt-dot{width:10px;height:10px;border-radius:50%;border:2px solid currentColor;flex-shrink:0;}
@@ -154,65 +160,67 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .sc-goal{font-size:10px;opacity:.55;margin-top:2px;}
 .sc-bar{height:5px;background:var(--bg2);border-radius:3px;margin-top:8px;overflow:hidden;}
 .sc-fill{height:100%;border-radius:3px;}
+.sc-eng{border-color:var(--eng-b);color:var(--eng-t);}
 .sc-bio{border-color:var(--bio-b);color:var(--bio-t);}
 .sc-qui{border-color:var(--qui-b);color:var(--qui-t);}
 .sc-red{border-color:var(--red-b);color:var(--red-t);}
-.sc-eng{border-color:var(--eng-b);color:var(--eng-t);}
-.sc-vest{border-color:var(--vest-b);color:var(--vest-t);}
+.sc-port{border-color:var(--port-b);color:var(--port-t);}
 .wk-grid{background:#fff;border-radius:10px;overflow:hidden;}
-.wk-head{background:var(--ink);color:#fff;display:grid;grid-template-columns:108px repeat(5,1fr) 80px;}
-.wk-row{display:grid;grid-template-columns:108px repeat(5,1fr) 80px;border-bottom:1px solid var(--bg2);}
+.wk-head{background:var(--ink);color:#fff;display:grid;grid-template-columns:115px repeat(5,1fr) 80px;}
+.wk-row{display:grid;grid-template-columns:115px repeat(5,1fr) 80px;border-bottom:1px solid var(--bg2);}
 .wk-row:last-child{border-bottom:none;}
 .wk-row:hover{background:var(--bg);}
 .wk-head>div,.wk-row>div{padding:8px 7px;font-size:11px;}
 .wk-head>div{font-weight:500;text-transform:uppercase;letter-spacing:.05em;}
-.wk-sub{font-weight:600;display:flex;align-items:center;gap:5px;font-size:11.5px;}
+.wk-sub{font-weight:600;display:flex;align-items:center;gap:5px;font-size:11px;}
 .wk-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .hr-inp{width:44px;padding:4px 5px;border:1px solid var(--bg2);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:center;color:var(--ink);outline:none;}
 .hr-inp:focus{border-color:var(--ink);}
 .wk-total{font-weight:700;font-size:12px;}
 .footer{text-align:center;padding:14px;font-size:11px;color:var(--lt);border-top:1px solid var(--bg2);margin-top:8px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
 .footer a{color:var(--lt);text-decoration:none;}
-.footer a:hover{color:var(--ink);}
 .reset-link{font-size:10px;color:var(--lt);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:500;z-index:500;display:none;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3);}
 .toast.show{display:block;}
+.legend{display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px;border-bottom:1px solid var(--bg2);background:#fff;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
+.leg-dot{width:10px;height:10px;border-radius:50%;}
 @media(max-width:480px){.months-grid{grid-template-columns:1fr;}.sub-cards{grid-template-columns:1fr 1fr;}.wk-head,.wk-row{grid-template-columns:72px repeat(5,1fr) 52px;font-size:10px;}.hr-inp{width:32px;}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     SETUP SCREEN
-════════════════════════════════════════════ -->
+<!-- iOS INSTALL HINT -->
+<div id="iosHint" style="display:none;background:#1C1917;color:#fff;padding:11px 16px;font-size:12.5px;align-items:center;gap:10px;justify-content:space-between;">
+  <span>📱 <strong>Instalar app:</strong> toque em <strong>⬆ Compartilhar</strong> → <em>"Adicionar à Tela de Início"</em></span>
+  <button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:#F59E0B;font-size:18px;cursor:pointer;padding:0;flex-shrink:0;">✕</button>
+</div>
+
+<!-- SETUP -->
 <div id="setupScreen">
   <div class="setup-card">
     <div class="setup-logo">🔥</div>
     <h1>Configurar Sincronização</h1>
-    <p class="sub">Para que o Giovanni e o Pai vejam o mesmo planejador em tempo real, precisamos conectar a um banco de dados gratuito do Firebase. Leva 5 minutos e é de graça.</p>
-
+    <p class="sub">Para que Giovanni e o Pai vejam o mesmo planejador em tempo real, conecte ao Firebase (gratuito). Leva 5 minutos.</p>
     <div class="setup-steps">
-      <div class="setup-step">Acesse <strong>firebase.google.com</strong> com sua conta Google e clique em <strong>"Criar um projeto"</strong>. Dê qualquer nome (ex: <code>giovanni-planner</code>). Desative o Google Analytics se quiser. Clique em <strong>Criar projeto</strong>.</div>
-      <div class="setup-step">No menu lateral clique em <strong>Realtime Database</strong> → <strong>Criar banco de dados</strong> → Escolha o servidor (qualquer um) → Selecione <strong>"Iniciar no modo de teste"</strong> → <strong>Ativar</strong>.</div>
-      <div class="setup-step">O link do banco aparecerá no topo, assim: <code>https://nome-do-projeto-default-rtdb.firebaseio.com</code>. Copie esse link.</div>
-      <div class="setup-step">Cole o link abaixo e clique em <strong>Conectar e Salvar</strong>. Pronto — Giovanni e Pai compartilham o mesmo planejador!</div>
+      <div class="setup-step">Acesse <strong>firebase.google.com</strong> com conta Google → <strong>"Criar um projeto"</strong> → qualquer nome → Criar projeto.</div>
+      <div class="setup-step">Menu lateral: <strong>Realtime Database</strong> → Criar banco de dados → <strong>"Iniciar no modo de teste"</strong> → Ativar.</div>
+      <div class="setup-step">Copie o link do banco: <code>https://nome-default-rtdb.firebaseio.com</code></div>
+      <div class="setup-step">Cole abaixo e clique em <strong>Conectar</strong>. Pronto — ambos compartilham o mesmo planejador!</div>
     </div>
-
     <div class="setup-err" id="setupErr"></div>
     <input class="setup-input" id="fbUrlInput" type="url" placeholder="https://seu-projeto-default-rtdb.firebaseio.com">
     <button class="setup-btn" id="setupBtn" onclick="configureFB()">🔥 Conectar e Salvar</button>
-    <p class="setup-note">Seus dados ficam no seu próprio banco de dados Firebase. Nem o Anthropic nem ninguém mais tem acesso.</p>
+    <p class="setup-note">Seus dados ficam no seu próprio Firebase. Ninguém mais tem acesso.</p>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     APP
-════════════════════════════════════════════ -->
+<!-- APP -->
 <div id="app">
   <header class="hdr">
     <div>
       <div class="hdr-title">Planejador · Giovanni M. J. Afonso</div>
-      <div class="hdr-sub">Set 2025 – Fev 2026 · Medicina · TOEFL · Esporte</div>
+      <div class="hdr-sub">Intercâmbio + Vestibular Brasil · Inglês · Biologia · Química · Redação · Português</div>
     </div>
     <div class="hdr-right">
       <span class="hdr-sync" id="syncStatus">⟳ conectando…</span>
@@ -234,7 +242,17 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 
   <div class="tab-pane active" id="tab-agenda">
     <div class="info-bar" id="infoBar">
-      💡 <strong>Giovanni:</strong> clique nos blocos cinza para escolher a matéria e propor o horário de estudo.
+      💡 <strong>Giovanni:</strong> clique nos blocos cinza para propor a matéria de estudo. Blocos coloridos = fixos.
+    </div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--eng-b)"></div>Inglês</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--bio-b)"></div>Biologia (EN)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--qui-b)"></div>Química (EN)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--red-b)"></div>Redação</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--port-b)"></div>Português</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--sug-b)"></div>💡 Sugestão</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--prop-b)"></div>⏳ Proposta</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--apr-b)"></div>✅ Aprovado</div>
     </div>
     <div class="day-nav">
       <button class="day-btn active" onclick="setDay('seg')">Segunda</button>
@@ -271,7 +289,7 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
         <label class="form-label">Matéria</label>
         <select class="form-ctrl" id="subSel"></select>
         <label class="form-label">O que vai estudar neste bloco?</label>
-        <textarea class="form-ctrl" id="noteInp" placeholder="Ex: Cap. 5 de Biologia, questões de vestibular..."></textarea>
+        <textarea class="form-ctrl" id="noteInp" placeholder="Ex: Cell division – Khan Academy, Redação tema ENEM..."></textarea>
         <div class="modal-acts">
           <button class="btn btn-can" onclick="closeModal()">Cancelar</button>
           <button class="btn btn-pri" onclick="saveSlot()">💾 Propor Horário</button>
@@ -280,7 +298,7 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
       <div id="paiFields" style="display:none">
         <label class="form-label">Proposta do Giovanni</label>
         <div class="proposal-box" id="proposalBox"></div>
-        <label class="form-label">Observação para o Giovanni (opcional)</label>
+        <label class="form-label">Observação (opcional)</label>
         <textarea class="form-ctrl" id="valNoteInp" placeholder="Feedback ou sugestão..."></textarea>
         <div class="modal-acts">
           <button class="btn btn-can" onclick="closeModal()">Fechar</button>
@@ -301,9 +319,7 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 </div>
 
 <script>
-// ══════════════════════════════════════════════
-//  FIREBASE CONFIG
-// ══════════════════════════════════════════════
+// ══ FIREBASE ══════════════════════════════════
 const CFG_KEY = 'gio_fb_url';
 let FB_URL = localStorage.getItem(CFG_KEY);
 
@@ -312,86 +328,38 @@ async function configureFB() {
   const err = document.getElementById('setupErr');
   let url = document.getElementById('fbUrlInput').value.trim().replace(/\/+$/, '');
   err.style.display = 'none';
-
-  if (!url || !url.includes('firebaseio.com')) {
-    err.textContent = '⚠️ URL inválida. Deve terminar com .firebaseio.com';
-    err.style.display = 'block';
-    return;
-  }
-
-  btn.textContent = '⟳ Testando conexão…';
-  btn.disabled = true;
-
+  if (!url || !url.includes('firebaseio.com')) { err.textContent = '⚠️ URL inválida. Deve conter .firebaseio.com'; err.style.display = 'block'; return; }
+  btn.textContent = '⟳ Testando conexão…'; btn.disabled = true;
   try {
-    const resp = await fetch(`${url}/giovanni_test.json`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ok: true })
-    });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    FB_URL = url;
-    localStorage.setItem(CFG_KEY, url);
-    initApp();
-  } catch (e) {
-    err.textContent = '❌ Não foi possível conectar. Verifique a URL e confirme que o banco está em "modo de teste".';
-    err.style.display = 'block';
-    btn.textContent = '🔥 Conectar e Salvar';
-    btn.disabled = false;
-  }
+    const r = await fetch(`${url}/gio_test.json`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:'{"ok":true}' });
+    if (!r.ok) throw new Error();
+    FB_URL = url; localStorage.setItem(CFG_KEY, url); initApp();
+  } catch (e) { err.textContent = '❌ Não foi possível conectar. Verifique a URL e confirme o modo de teste.'; err.style.display = 'block'; btn.textContent = '🔥 Conectar e Salvar'; btn.disabled = false; }
 }
+function resetConfig() { if (confirm('Desconectar do Firebase e reconfigurar?')) { localStorage.removeItem(CFG_KEY); FB_URL = null; document.getElementById('setupScreen').style.display='flex'; document.getElementById('app').style.display='none'; } }
+function initApp() { document.getElementById('setupScreen').style.display='none'; document.getElementById('app').style.display='block'; loadST(); fbLoad(false); setInterval(() => fbLoad(false), 30000); }
 
-function resetConfig() {
-  if (confirm('Isso vai desconectar do Firebase e pedir a URL novamente. Continuar?')) {
-    localStorage.removeItem(CFG_KEY);
-    FB_URL = null;
-    document.getElementById('setupScreen').style.display = 'flex';
-    document.getElementById('app').style.display = 'none';
-  }
-}
-
-function initApp() {
-  document.getElementById('setupScreen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  loadST();
-  fbLoad(false);
-  setInterval(() => fbLoad(false), 30000); // auto-refresh every 30s
-}
-
-// ══════════════════════════════════════════════
-//  FIREBASE SYNC
-// ══════════════════════════════════════════════
-function setSyncStatus(state, msg) {
-  const el = document.getElementById('syncStatus');
-  el.className = 'hdr-sync ' + state;
-  el.textContent = msg;
-}
-
-async function fbLoad(showToast) {
+function setSyncStatus(s, m) { const el = document.getElementById('syncStatus'); el.className = 'hdr-sync ' + s; el.textContent = m; }
+async function fbLoad(toast) {
   if (!FB_URL) return;
   setSyncStatus('syncing', '⟳ sincronizando…');
   try {
-    const resp = await fetch(`${FB_URL}/giovanni.json`);
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const data = await resp.json();
-    if (data && typeof data === 'object') {
-      if (data.slots)  ST.slots  = data.slots;
-      if (data.months) ST.months = data.months;
-      if (data.hrs)    ST.hrs    = data.hrs;
-      MONTHS.forEach(m  => { if (!ST.months[m.id])  ST.months[m.id]  = { eng: false, ma: null, notes: '' }; });
-      SUBJECTS_DEF.forEach(s => { if (!ST.hrs[s.id]) ST.hrs[s.id] = { seg: 0, ter: 0, qua: 0, qui: 0, sex: 0 }; });
-      saveST();
-      renderCurrent();
-      updatePending();
+    const r = await fetch(`${FB_URL}/giovanni.json`);
+    if (!r.ok) throw new Error();
+    const d = await r.json();
+    if (d && typeof d === 'object') {
+      if (d.slots)  ST.slots  = d.slots;
+      if (d.months) ST.months = d.months;
+      if (d.hrs)    ST.hrs    = d.hrs;
+      MONTHS.forEach(m => { if (!ST.months[m.id]) ST.months[m.id] = {eng:false,ma:null,notes:''}; });
+      SUBJECTS_DEF.forEach(s => { if (!ST.hrs[s.id]) ST.hrs[s.id] = {seg:0,ter:0,qua:0,qui:0,sex:0}; });
+      saveST(false); renderCurrent(); updatePending();
     }
-    const now = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    const now = new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
     setSyncStatus('ok', '✅ ' + now);
-    if (showToast) showToastMsg('Planejador atualizado!');
-  } catch (e) {
-    setSyncStatus('err', '⚠️ offline');
-    if (showToast) showToastMsg('Sem conexão — dados locais.');
-  }
+    if (toast) showT('Planejador atualizado!');
+  } catch (e) { setSyncStatus('err', '⚠️ offline'); if (toast) showT('Sem conexão — dados locais.'); }
 }
-
 let saveTimer = null;
 async function fbSave() {
   if (!FB_URL) return;
@@ -399,223 +367,263 @@ async function fbSave() {
   saveTimer = setTimeout(async () => {
     setSyncStatus('syncing', '⟳ salvando…');
     try {
-      const data = { slots: ST.slots, months: ST.months, hrs: ST.hrs };
-      const resp = await fetch(`${FB_URL}/giovanni.json`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const now = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      setSyncStatus('ok', '✅ ' + now);
-    } catch (e) {
-      setSyncStatus('err', '⚠️ erro ao salvar');
-    }
+      const r = await fetch(`${FB_URL}/giovanni.json`, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify({slots:ST.slots,months:ST.months,hrs:ST.hrs}) });
+      if (!r.ok) throw new Error();
+      const now = new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+      setSyncStatus('ok','✅ ' + now);
+    } catch (e) { setSyncStatus('err','⚠️ erro ao salvar'); }
   }, 800);
 }
+function showT(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
 
-function showToastMsg(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-// ══════════════════════════════════════════════
-//  DATA
-// ══════════════════════════════════════════════
+// ══ DADOS ════════════════════════════════════
 const DAYS = ['seg','ter','qua','qui','sex','sab','dom'];
-const DAY_LABEL = { seg:'Segunda-feira', ter:'Terça-feira', qua:'Quarta-feira', qui:'Quinta-feira', sex:'Sexta-feira', sab:'Sábado', dom:'Domingo' };
+const DAY_LABEL = {seg:'Segunda-feira',ter:'Terça-feira',qua:'Quarta-feira',qui:'Quinta-feira',sex:'Sexta-feira',sab:'Sábado',dom:'Domingo'};
 
 const FIXED = {
-  seg:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
-  ter:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
-  qua:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'14:30',e:'16:00',label:'Boxe',t:'box',i:'🥊'}, {s:'17:00',e:'18:00',label:'Terapia — Lidiane',t:'ther',i:'🧠',n:'Sessão semanal'}, {s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
-  qui:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
-  sex:[ {s:'06:50',e:'07:40',label:'Acordar & Café da manhã',t:'meal',i:'☀️'}, {s:'07:50',e:'11:20',label:'Faculdade',t:'uni',i:'🎓',n:'Aula presencial'}, {s:'10:15',e:'11:15',label:'Academia',t:'gym',i:'💪',n:'⚠️ Confirmar horário c/ faculdade'}, {s:'11:20',e:'13:00',label:'Descanso',t:'rest',i:'💤'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
-  sab:[ {s:'08:30',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️',n:'Fim de semana'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'14:30',e:'16:00',label:'Boxe',t:'box',i:'🥊'}, {s:'16:00',e:'16:30',label:'Lanche + Banho',t:'rest',i:'🚿'}, {s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ],
-  dom:[ {s:'09:00',e:'10:00',label:'Acordar & Café da manhã',t:'meal',i:'☀️',n:'Domingo sem pressa'}, {s:'13:00',e:'14:00',label:'Almoço',t:'meal',i:'🍽️'}, {s:'14:00',e:'17:00',label:'Organização + Marmitas',t:'rest',i:'🏠',n:'Lavar roupa, arrumar, preparar a semana'}, {s:'18:00',e:'20:00',label:'Jogo do Flamengo ⚽ 🔴⚫',t:'fla',i:'⚽',n:'Momento sagrado!'}, {s:'20:30',e:'21:00',label:'Jantar',t:'meal',i:'🍽️'}, {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'} ]
+  seg:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ],
+  ter:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'10:15',e:'11:30',label:'Academia',t:'gym',i:'💪'},
+    {s:'11:30',e:'12:00',label:'Descanso + Banho',t:'rest',i:'🚿'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ],
+  qua:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'14:30',e:'16:30',label:'Arte Marcial',t:'box',i:'🥋',n:'Muay Thai (Prof. Yan) · Krav Maga · Jiu-Jitsu — a definir'},
+    {s:'17:00',e:'18:00',label:'Terapia — Lidiane',t:'ther',i:'🧠',n:'Sessão semanal'},
+    {s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ],
+  qui:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'10:15',e:'11:30',label:'Academia',t:'gym',i:'💪'},
+    {s:'11:30',e:'12:00',label:'Descanso + Banho',t:'rest',i:'🚿'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ],
+  sex:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'10:15',e:'11:30',label:'Academia',t:'gym',i:'💪'},
+    {s:'11:30',e:'12:00',label:'Descanso + Banho',t:'rest',i:'🚿'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'19:30',e:'20:30',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ],
+  sab:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'14:30',e:'16:30',label:'Arte Marcial',t:'box',i:'🥋',n:'Muay Thai (Prof. Yan) · Krav Maga · Jiu-Jitsu — a definir'},
+    {s:'16:30',e:'17:00',label:'Descanso + Banho',t:'rest',i:'🚿'},
+    {s:'19:00',e:'20:00',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ],
+  dom:[
+    {s:'09:00',e:'09:30',label:'Acordar & Café da manhã',t:'meal',i:'☀️'},
+    {s:'12:00',e:'13:00',label:'Almoço',t:'meal',i:'🍽️'},
+    {s:'13:00',e:'17:00',label:'Tempo Livre / Família',t:'rest',i:'🏡',n:'Em casa com os pais — descanso e lazer'},
+    {s:'18:00',e:'20:00',label:'Jogo do Flamengo ⚽ 🔴⚫',t:'fla',i:'⚽',n:'Momento sagrado!'},
+    {s:'20:30',e:'21:00',label:'Jantar',t:'meal',i:'🍽️'},
+    {s:'22:30',e:null,label:'Dormir',t:'sleep',i:'🌙'}
+  ]
 };
 
 const SLOTS = {
-  seg:[ {id:'seg_1',s:'14:00',e:'16:00',sug:'Biologia',hint:'Revisão teórica + exercícios — 2h'}, {id:'seg_2',s:'16:00',e:'18:00',sug:'Química',hint:'Estudo + questões — 2h'}, {id:'seg_3',s:'18:00',e:'19:30',sug:'Inglês / TOEFL',hint:'Listening, reading, vocabulário — 1h30'}, {id:'seg_4',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões multidisciplinares — 1h30'} ],
-  ter:[ {id:'ter_1',s:'14:00',e:'15:30',sug:'Química',hint:'Estudo e exercícios — 1h30'}, {id:'ter_2',s:'15:30',e:'17:30',sug:'Inglês / TOEFL',hint:'Writing e speaking — 2h'}, {id:'ter_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões e revisão — 1h30'} ],
-  qua:[ {id:'qua_1',s:'16:00',e:'17:00',sug:'Inglês / TOEFL',hint:'Prática rápida antes da terapia — 1h'}, {id:'qua_2',s:'18:00',e:'19:00',sug:'Redação',hint:'Texto dissertativo-argumentativo — 1h'}, {id:'qua_3',s:'20:00',e:'21:30',sug:'Vestibular (Geral)',hint:'Revisão e questões — 1h30'} ],
-  qui:[ {id:'qui_1',s:'14:00',e:'16:00',sug:'Biologia',hint:'Anatomia, fisiologia, genética — 2h'}, {id:'qui_2',s:'16:00',e:'18:00',sug:'Inglês / TOEFL',hint:'Leitura e compreensão — 2h'}, {id:'qui_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Questões e revisão — 1h30'} ],
-  sex:[ {id:'sex_1',s:'14:00',e:'15:30',sug:'Redação',hint:'Prática de escrita e argumentação — 1h30'}, {id:'sex_2',s:'15:30',e:'17:30',sug:'Inglês / TOEFL',hint:'Mock test parcial — 2h'}, {id:'sex_3',s:'20:30',e:'22:00',sug:'Vestibular (Geral)',hint:'Revisão da semana — 1h30'} ],
-  sab:[ {id:'sab_1',s:'09:30',e:'11:00',sug:'Biologia / Química',hint:'Estudo intensivo — Bloco 1 — 1h30'}, {id:'sab_2',s:'11:30',e:'12:30',sug:'Vestibular (Geral)',hint:'Questões — Bloco 2 — 1h'}, {id:'sab_3',s:'17:00',e:'18:30',sug:'Redação',hint:'Texto completo com correção — 1h30'} ],
-  dom:[ {id:'dom_1',s:'10:00',e:'11:00',sug:'Vestibular (Geral)',hint:'Revisão — Bloco 1 — 1h'}, {id:'dom_2',s:'11:30',e:'12:30',sug:'Inglês / TOEFL',hint:'Vocabulário e revisão — Bloco 2 — 1h'} ]
+  seg:[
+    {id:'seg_1',s:'09:30',e:'11:00',sug:'Biologia (em Inglês)',hint:'Cell biology, genetics, anatomy — in English — 1h30'},
+    {id:'seg_2',s:'11:00',e:'12:00',sug:'Inglês',hint:'Reading comprehension, grammar, writing practice — 1h'},
+    {id:'seg_3',s:'13:00',e:'15:00',sug:'Química (em Inglês)',hint:'Organic chemistry, reactions, periodic table — in English — 2h'},
+    {id:'seg_4',s:'15:00',e:'16:30',sug:'Português',hint:'Interpretação de texto, literatura, gramática — 1h30'},
+    {id:'seg_5',s:'20:30',e:'22:00',sug:'Redação',hint:'Texto dissertativo-argumentativo — tema ENEM/vestibular — 1h30'}
+  ],
+  ter:[
+    {id:'ter_1',s:'09:30',e:'10:00',sug:'Inglês',hint:'Revisão rápida antes da academia — 30min'},
+    {id:'ter_2',s:'13:00',e:'14:30',sug:'Química (em Inglês)',hint:'Exercícios e revisão de conceitos — 1h30'},
+    {id:'ter_3',s:'14:30',e:'16:00',sug:'Português',hint:'Literatura brasileira, interpretação de texto — 1h30'},
+    {id:'ter_4',s:'20:30',e:'22:00',sug:'Biologia (em Inglês)',hint:'Revisão e exercícios — in English — 1h30'}
+  ],
+  qua:[
+    {id:'qua_1',s:'09:30',e:'11:30',sug:'Biologia (em Inglês)',hint:'Fisiologia, genética, ecologia — in English — 2h'},
+    {id:'qua_2',s:'11:30',e:'12:00',sug:'Inglês',hint:'Leitura rápida ou vocabulary — 30min'},
+    {id:'qua_3',s:'13:00',e:'14:30',sug:'Química (em Inglês)',hint:'Revisão de conceitos e resolução de problemas — 1h30'},
+    {id:'qua_4',s:'18:00',e:'19:00',sug:'Redação',hint:'Rascunho e revisão de texto — 1h'},
+    {id:'qua_5',s:'20:00',e:'21:30',sug:'Português',hint:'Gramática, estilística, questões — 1h30'}
+  ],
+  qui:[
+    {id:'qui_1',s:'09:30',e:'10:00',sug:'Português',hint:'Revisão rápida antes da academia — 30min'},
+    {id:'qui_2',s:'13:00',e:'15:00',sug:'Biologia (em Inglês)',hint:'Cell biology, molecular biology — in English — 2h'},
+    {id:'qui_3',s:'15:00',e:'16:30',sug:'Inglês',hint:'Leitura de artigos científicos, vocabulary — 1h30'},
+    {id:'qui_4',s:'20:30',e:'22:00',sug:'Redação',hint:'Texto completo ou revisão de redações anteriores — 1h30'}
+  ],
+  sex:[
+    {id:'sex_1',s:'09:30',e:'10:00',sug:'Química (em Inglês)',hint:'Revisão rápida antes da academia — 30min'},
+    {id:'sex_2',s:'13:00',e:'14:30',sug:'Redação',hint:'Prática livre ou simulado de escrita — 1h30'},
+    {id:'sex_3',s:'14:30',e:'16:00',sug:'Inglês',hint:'Mock test parcial / conversação / podcast — 1h30'},
+    {id:'sex_4',s:'20:30',e:'22:00',sug:'Português',hint:'Revisão da semana + questões — 1h30'}
+  ],
+  sab:[
+    {id:'sab_1',s:'09:30',e:'11:30',sug:'Biologia (em Inglês)',hint:'Estudo intensivo — Bloco 1 — 2h'},
+    {id:'sab_2',s:'11:30',e:'12:00',sug:'Inglês',hint:'Reading ou listening — Bloco 2 — 30min'},
+    {id:'sab_3',s:'13:00',e:'14:30',sug:'Química (em Inglês)',hint:'Revisão e exercícios — Bloco 3 — 1h30'},
+    {id:'sab_4',s:'17:00',e:'18:30',sug:'Redação',hint:'Texto completo com correção — 1h30'}
+  ],
+  dom:[
+    {id:'dom_1',s:'09:30',e:'11:00',sug:'Revisão Geral',hint:'Revisão da semana — Bloco 1 — 1h30'},
+    {id:'dom_2',s:'11:00',e:'12:00',sug:'Inglês',hint:'Revisão leve ou leitura — Bloco 2 — 1h'}
+  ]
 };
 
-const MONTHS = [ {id:'set',name:'Setembro',yr:2025}, {id:'out',name:'Outubro',yr:2025}, {id:'nov',name:'Novembro',yr:2025}, {id:'dez',name:'Dezembro',yr:2025}, {id:'jan',name:'Janeiro',yr:2026}, {id:'fev',name:'Fevereiro',yr:2026} ];
-const SUBJECTS_DEF = [ {id:'bio',lbl:'Biologia',ico:'🔬',cls:'sc-bio',dot:'#059669',goal:4}, {id:'qui',lbl:'Química',ico:'🧪',cls:'sc-qui',dot:'#DC2626',goal:4}, {id:'red',lbl:'Redação',ico:'✍️',cls:'sc-red',dot:'#F57C00',goal:3}, {id:'eng',lbl:'Inglês / TOEFL',ico:'🇺🇸',cls:'sc-eng',dot:'#3F51B5',goal:5}, {id:'vest',lbl:'Vestibular (Geral)',ico:'🩺',cls:'sc-vest',dot:'#E91E63',goal:7} ];
-const SUB_OPTIONS = ['Biologia','Química','Redação','Inglês / TOEFL','Vestibular (Geral)','Revisão Geral','A definir'];
-const SUB_CLS = {'Biologia':'sub-bio','Química':'sub-qui','Redação':'sub-red','Inglês / TOEFL':'sub-eng','Vestibular (Geral)':'sub-vest','Biologia / Química':'sub-bio','Revisão Geral':'sub-rev'};
+const MONTHS = [{id:'set',name:'Setembro',yr:2025},{id:'out',name:'Outubro',yr:2025},{id:'nov',name:'Novembro',yr:2025},{id:'dez',name:'Dezembro',yr:2025},{id:'jan',name:'Janeiro',yr:2026},{id:'fev',name:'Fevereiro',yr:2026}];
 
-// ══════════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════════
-let ST = { tab:'agenda', day:'seg', mode:'gio', editId:null, slots:{}, months:{}, hrs:{} };
+const SUBJECTS_DEF = [
+  {id:'eng',lbl:'Inglês',ico:'🇺🇸',cls:'sc-eng',dot:'#3F51B5',goal:6},
+  {id:'bio',lbl:'Biologia (em Inglês)',ico:'🔬',cls:'sc-bio',dot:'#059669',goal:4},
+  {id:'qui',lbl:'Química (em Inglês)',ico:'🧪',cls:'sc-qui',dot:'#DC2626',goal:4},
+  {id:'red',lbl:'Redação',ico:'✍️',cls:'sc-red',dot:'#F57C00',goal:3},
+  {id:'port',lbl:'Português',ico:'📝',cls:'sc-port',dot:'#0D9488',goal:3}
+];
+
+const SUB_OPTIONS = ['Inglês','Biologia (em Inglês)','Química (em Inglês)','Redação','Português','Revisão Geral','A definir'];
+const SUB_CLS = {'Inglês':'sub-eng','Biologia (em Inglês)':'sub-bio','Química (em Inglês)':'sub-qui','Redação':'sub-red','Português':'sub-port','Revisão Geral':'sub-rev'};
+
+// ══ ESTADO ═══════════════════════════════════
+let ST = {tab:'agenda',day:'seg',mode:'gio',editId:null,slots:{},months:{},hrs:{}};
 
 function loadST() {
-  try { const d = JSON.parse(localStorage.getItem('gio26') || '{}'); ST.slots = d.slots || {}; ST.months = d.months || {}; ST.hrs = d.hrs || {}; } catch (e) {}
-  MONTHS.forEach(m => { if (!ST.months[m.id]) ST.months[m.id] = { eng: false, ma: null, notes: '' }; });
-  SUBJECTS_DEF.forEach(s => { if (!ST.hrs[s.id]) ST.hrs[s.id] = { seg: 0, ter: 0, qua: 0, qui: 0, sex: 0 }; });
+  try { const d = JSON.parse(localStorage.getItem('gio26')||'{}'); ST.slots=d.slots||{}; ST.months=d.months||{}; ST.hrs=d.hrs||{}; } catch(e){}
+  MONTHS.forEach(m => { if (!ST.months[m.id]) ST.months[m.id]={eng:false,ma:null,notes:''}; });
+  SUBJECTS_DEF.forEach(s => { if (!ST.hrs[s.id]) ST.hrs[s.id]={seg:0,ter:0,qua:0,qui:0,sex:0}; });
 }
-function saveST() {
-  try { localStorage.setItem('gio26', JSON.stringify({ slots: ST.slots, months: ST.months, hrs: ST.hrs })); } catch (e) {}
-  fbSave();
+function saveST(sync=true) {
+  try { localStorage.setItem('gio26', JSON.stringify({slots:ST.slots,months:ST.months,hrs:ST.hrs})); } catch(e){}
+  if (sync) fbSave();
 }
 
-// ══════════════════════════════════════════════
-//  NAVIGATION
-// ══════════════════════════════════════════════
-function renderCurrent() {
-  if (ST.tab === 'agenda') renderTimeline();
-  if (ST.tab === 'plano') renderPlanner();
-  if (ST.tab === 'materias') renderMaterias();
-}
+// ══ NAVEGAÇÃO ════════════════════════════════
+function renderCurrent() { if(ST.tab==='agenda')renderTimeline(); if(ST.tab==='plano')renderPlanner(); if(ST.tab==='materias')renderMaterias(); }
 function setTab(t) {
-  ST.tab = t;
-  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', ['agenda','plano','materias'][i] === t));
-  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + t).classList.add('active');
+  ST.tab=t;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['agenda','plano','materias'][i]===t));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
   renderCurrent();
 }
-function setDay(d) {
-  ST.day = d;
-  document.querySelectorAll('.day-btn').forEach((b, i) => b.classList.toggle('active', DAYS[i] === d));
-  renderTimeline();
-}
+function setDay(d) { ST.day=d; document.querySelectorAll('.day-btn').forEach((b,i)=>b.classList.toggle('active',DAYS[i]===d)); renderTimeline(); }
 function toggleMode() {
-  ST.mode = ST.mode === 'gio' ? 'pai' : 'gio';
-  const btn = document.getElementById('modeBtn');
-  btn.textContent = ST.mode === 'pai' ? '👨 Modo Giovanni' : '🔒 Modo Pai';
-  btn.classList.toggle('val', ST.mode === 'pai');
-  document.getElementById('valBar').classList.toggle('show', ST.mode === 'pai');
-  document.getElementById('infoBar').innerHTML = ST.mode === 'pai'
-    ? '🔒 <strong>Modo Pai:</strong> clique nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.'
-    : '💡 <strong>Giovanni:</strong> clique nos blocos cinza para escolher a matéria e propor o horário de estudo.';
+  ST.mode=ST.mode==='gio'?'pai':'gio';
+  const btn=document.getElementById('modeBtn');
+  btn.textContent=ST.mode==='pai'?'👨 Modo Giovanni':'🔒 Modo Pai';
+  btn.classList.toggle('val',ST.mode==='pai');
+  document.getElementById('valBar').classList.toggle('show',ST.mode==='pai');
+  document.getElementById('infoBar').innerHTML=ST.mode==='pai'?'🔒 <strong>Modo Pai:</strong> clique nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.':'💡 <strong>Giovanni:</strong> clique nos blocos cinza para propor a matéria de estudo.';
   updatePending(); renderTimeline();
 }
-function updatePending() {
-  const n = Object.values(ST.slots).filter(s => s.status === 'proposta').length;
-  const p = document.getElementById('pendingPill');
-  p.textContent = n;
-  p.classList.toggle('show', n > 0);
-}
+function updatePending() { const n=Object.values(ST.slots).filter(s=>s.status==='proposta').length; const p=document.getElementById('pendingPill'); p.textContent=n; p.classList.toggle('show',n>0); }
 
-// ══════════════════════════════════════════════
-//  TIMELINE
-// ══════════════════════════════════════════════
+// ══ TIMELINE ═════════════════════════════════
 function renderTimeline() {
-  const day = ST.day;
-  const fixed = (FIXED[day] || []).map(e => ({ ...e, fixed: true }));
-  const slots = (SLOTS[day] || []).map(sl => {
-    const sv = ST.slots[sl.id] || {};
-    return { ...sl, fixed: false, subject: sv.subject || sl.sug, note: sv.note || '', status: sv.status || 'sugestão', valNote: sv.valNote || '' };
-  });
-  const all = [...fixed, ...slots].sort((a, b) => (a.s || '').localeCompare(b.s || ''));
-  document.getElementById('timeline').innerHTML = all.map(e => e.fixed ? renderFixed(e) : renderSlot(e)).join('');
+  const day=ST.day;
+  const fixed=(FIXED[day]||[]).map(e=>({...e,fixed:true}));
+  const slots=(SLOTS[day]||[]).map(sl=>{ const sv=ST.slots[sl.id]||{}; return{...sl,fixed:false,subject:sv.subject||sl.sug,note:sv.note||'',status:sv.status||'sugestão',valNote:sv.valNote||''}; });
+  const all=[...fixed,...slots].sort((a,b)=>(a.s||'').localeCompare(b.s||''));
+  document.getElementById('timeline').innerHTML=all.map(e=>e.fixed?renderFixed(e):renderSlot(e)).join('');
 }
-function renderFixed(e) {
-  const t = e.e ? `${e.s} – ${e.e}` : e.s;
-  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ev-${e.t}"><div class="ev-label">${e.i} ${e.label}</div>${e.n ? `<div class="ev-note">${e.n}</div>` : ''}</div></div>`;
-}
+function renderFixed(e) { const t=e.e?`${e.s} – ${e.e}`:e.s; return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ev-${e.t}"><div class="ev-label">${e.i} ${e.label}</div>${e.n?`<div class="ev-note">${e.n}</div>`:''}</div></div>`; }
 function renderSlot(s) {
-  const t = `${s.s} – ${s.e}`; const st = s.status;
-  let cls = 'slot-sug';
-  if (st === 'proposta') cls = 'slot-prop';
-  else if (st === 'aprovada') cls = SUB_CLS[s.subject] || 'slot-apr';
-  else if (st === 'rejeitada') cls = 'slot-rej';
-  const lbl = st === 'sugestão' ? `📖 ${s.subject} <em style="font-weight:400;font-size:11px;">(sugestão)</em>` : `📖 ${s.subject}`;
-  const hint = st === 'sugestão' ? `<div class="ev-note">${s.hint}</div>` : (s.note ? `<div class="ev-note">${s.note}</div>` : '');
-  const vn = s.valNote ? `<div class="ev-note" style="font-weight:600;margin-top:3px;">📝 ${s.valNote}</div>` : '';
-  const bdg = { sugestão: `<span class="ev-badge" style="background:#E2E8F0;color:#475569;">💡 clique para editar</span>`, proposta: `<span class="ev-badge" style="background:#FEF9C3;color:#92400E;">⏳ aguardando validação</span>`, aprovada: `<span class="ev-badge" style="background:#DCFCE7;color:#14532D;">✅ aprovado</span>`, rejeitada: `<span class="ev-badge" style="background:#FEE2E2;color:#991B1B;">❌ revisar</span>` }[st] || '';
-  const clickable = (ST.mode === 'gio' && st !== 'aprovada') || (ST.mode === 'pai' && st === 'proposta');
-  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ${cls}${clickable ? ' ev-slot' : ''}" ${clickable ? `onclick="openSlot('${s.id}')"` : ''}><div class="ev-label">${lbl}</div>${hint}${vn}${bdg}</div></div>`;
+  const t=`${s.s} – ${s.e}`; const st=s.status;
+  let cls='slot-sug';
+  if(st==='proposta')cls='slot-prop';
+  else if(st==='aprovada')cls=SUB_CLS[s.subject]||'slot-apr';
+  else if(st==='rejeitada')cls='slot-rej';
+  const lbl=st==='sugestão'?`📖 ${s.subject} <em style="font-weight:400;font-size:11px;">(sugestão)</em>`:`📖 ${s.subject}`;
+  const hint=st==='sugestão'?`<div class="ev-note">${s.hint}</div>`:(s.note?`<div class="ev-note">${s.note}</div>`:'');
+  const vn=s.valNote?`<div class="ev-note" style="font-weight:600;margin-top:3px;">📝 ${s.valNote}</div>`:'';
+  const bdg={sugestão:`<span class="ev-badge" style="background:#E2E8F0;color:#475569;">💡 clique para editar</span>`,proposta:`<span class="ev-badge" style="background:#FEF9C3;color:#92400E;">⏳ aguardando validação</span>`,aprovada:`<span class="ev-badge" style="background:#DCFCE7;color:#14532D;">✅ aprovado</span>`,rejeitada:`<span class="ev-badge" style="background:#FEE2E2;color:#991B1B;">❌ revisar</span>`}[st]||'';
+  const clickable=(ST.mode==='gio'&&st!=='aprovada')||(ST.mode==='pai'&&st==='proposta');
+  return `<div class="ev-row"><div class="ev-time">${t}</div><div class="ev-card ${cls}${clickable?' ev-slot':''}" ${clickable?`onclick="openSlot('${s.id}')"`:''}><div class="ev-label">${lbl}</div>${hint}${vn}${bdg}</div></div>`;
 }
 
-// ══════════════════════════════════════════════
-//  MODAL
-// ══════════════════════════════════════════════
-function findSlot(id) { for (const d of DAYS) { const f = (SLOTS[d] || []).find(s => s.id === id); if (f) return f; } return null; }
-function openSlot(id) {
-  const def = findSlot(id); if (!def) return;
-  const sv = ST.slots[id] || {};
-  const subject = sv.subject || def.sug, note = sv.note || '';
-  ST.editId = id;
-  const isPai = ST.mode === 'pai';
-  document.getElementById('gioFields').style.display = isPai ? 'none' : 'block';
-  document.getElementById('paiFields').style.display = isPai ? 'block' : 'none';
-  document.getElementById('modalH').textContent = isPai ? 'Validar Proposta' : 'Editar Horário de Estudo';
-  document.getElementById('modalSub').textContent = `${def.s} – ${def.e} · ${DAY_LABEL[ST.day]}`;
-  if (!isPai) { const sel = document.getElementById('subSel'); sel.innerHTML = SUB_OPTIONS.map(o => `<option value="${o}"${o === subject ? ' selected' : ''}>${o}</option>`).join(''); document.getElementById('noteInp').value = note; }
-  else { document.getElementById('proposalBox').textContent = subject + (note ? ' — ' + note : ''); document.getElementById('valNoteInp').value = ''; }
+// ══ MODAL ════════════════════════════════════
+function findSlot(id){for(const d of DAYS){const f=(SLOTS[d]||[]).find(s=>s.id===id);if(f)return f;}return null;}
+function openSlot(id){
+  const def=findSlot(id);if(!def)return;
+  const sv=ST.slots[id]||{};
+  const subject=sv.subject||def.sug, note=sv.note||'';
+  ST.editId=id;
+  const isPai=ST.mode==='pai';
+  document.getElementById('gioFields').style.display=isPai?'none':'block';
+  document.getElementById('paiFields').style.display=isPai?'block':'none';
+  document.getElementById('modalH').textContent=isPai?'Validar Proposta':'Editar Horário de Estudo';
+  document.getElementById('modalSub').textContent=`${def.s} – ${def.e} · ${DAY_LABEL[ST.day]}`;
+  if(!isPai){const sel=document.getElementById('subSel');sel.innerHTML=SUB_OPTIONS.map(o=>`<option value="${o}"${o===subject?' selected':''}>${o}</option>`).join('');document.getElementById('noteInp').value=note;}
+  else{document.getElementById('proposalBox').textContent=subject+(note?' — '+note:'');document.getElementById('valNoteInp').value='';}
   document.getElementById('overlay').classList.add('open');
 }
-function closeOverlay(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
-function closeModal() { document.getElementById('overlay').classList.remove('open'); ST.editId = null; }
-function saveSlot() {
-  const id = ST.editId; if (!id) return;
-  ST.slots[id] = { subject: document.getElementById('subSel').value, note: document.getElementById('noteInp').value.trim(), status: 'proposta' };
-  saveST(); closeModal(); updatePending(); renderTimeline();
+function closeOverlay(e){if(e.target===document.getElementById('overlay'))closeModal();}
+function closeModal(){document.getElementById('overlay').classList.remove('open');ST.editId=null;}
+function saveSlot(){const id=ST.editId;if(!id)return;ST.slots[id]={subject:document.getElementById('subSel').value,note:document.getElementById('noteInp').value.trim(),status:'proposta'};saveST();closeModal();updatePending();renderTimeline();}
+function approveSlot(){const id=ST.editId;if(!id)return;ST.slots[id]={...ST.slots[id],status:'aprovada',valNote:document.getElementById('valNoteInp').value.trim()};saveST();closeModal();updatePending();renderTimeline();}
+function rejectSlot(){const id=ST.editId;if(!id)return;ST.slots[id]={...ST.slots[id],status:'rejeitada',valNote:document.getElementById('valNoteInp').value.trim()};saveST();closeModal();updatePending();renderTimeline();}
+
+// ══ PLANO MENSAL ══════════════════════════════
+function cntEng(){return MONTHS.filter(m=>ST.months[m.id]?.eng).length;}
+function cntMA(){return MONTHS.filter(m=>ST.months[m.id]?.ma).length;}
+function renderPlanner(){
+  const eM=MONTHS.filter(m=>ST.months[m.id]?.eng).map(m=>m.name).join(', ')||'Nenhum selecionado';
+  const maLabels={krav:'Krav Maga',muay:'Muay Thai — Prof. Yan',jiu:'Jiu-Jitsu'};
+  const maM=MONTHS.filter(m=>ST.months[m.id]?.ma).map(m=>`${m.name} (${maLabels[ST.months[m.id].ma]||ST.months[m.id].ma})`).join(', ')||'Nenhum selecionado';
+  document.getElementById('planSummary').innerHTML=`<div class="ps-item"><div class="ps-label">🇺🇸 Inglês Presencial / Intensivo (máx. 1 mês)</div><div class="ps-val">${eM}</div></div><div class="ps-item"><div class="ps-label">🥋 Arte Marcial (máx. 2 meses)</div><div class="ps-val">${maM}</div></div>`;
+  document.getElementById('monthsGrid').innerHTML=MONTHS.map(renderMC).join('');
 }
-function approveSlot() {
-  const id = ST.editId; if (!id) return;
-  ST.slots[id] = { ...ST.slots[id], status: 'aprovada', valNote: document.getElementById('valNoteInp').value.trim() };
-  saveST(); closeModal(); updatePending(); renderTimeline();
+function renderMC(m){
+  const ms=ST.months[m.id];
+  const engFull=cntEng()>=1&&!ms.eng, maFull=cntMA()>=2&&!ms.ma;
+  const kravSel=ms.ma==='krav', muaySel=ms.ma==='muay', jiuSel=ms.ma==='jiu';
+  const specTags=[ms.eng?'<span class="mc-tag" style="background:var(--eng);color:var(--eng-t);">🇺🇸 Inglês Intensivo</span>':'',muaySel?'<span class="mc-tag" style="background:#FFF3E0;color:#7C2D12;">🥋 Muay Thai</span>':'',kravSel?'<span class="mc-tag" style="background:var(--box);color:var(--box-t);">🛡️ Krav Maga</span>':'',jiuSel?'<span class="mc-tag" style="background:#EFF6FF;color:#1E3A8A;">🥋 Jiu-Jitsu</span>':''].join('');
+  return `<div class="mc${(ms.eng||ms.ma)?' has-act':''}" id="mc-${m.id}"><div class="mc-name">${m.name}</div><div class="mc-year">${m.yr}</div><div class="mc-fixed-tags"><span class="mc-tag t-est">📚 Estudos</span><span class="mc-tag t-gym">💪 Academia</span><span class="mc-tag t-box">🥋 Arte Marcial</span><span class="mc-tag t-ther">🧠 Terapia</span>${specTags}</div><div class="mc-sec-title">🇺🇸 Inglês Intensivo / Presencial</div><button class="opt-btn${ms.eng?' sel-eng':''}" onclick="toggleEng('${m.id}')" ${engFull?'disabled':''}><span class="opt-dot${ms.eng?' on':''}"></span>${ms.eng?'Selecionado ✓':engFull?'Já escolhido em outro mês':'Selecionar este mês'}</button><div class="mc-sec-title">🥋 Arte Marcial</div><button class="opt-btn${muaySel?' sel-muay':''}" onclick="toggleMA('${m.id}','muay')" ${!muaySel&&maFull?'disabled':''}><span class="opt-dot${muaySel?' on':''}"></span>${muaySel?'Muay Thai — Prof. Yan ✓':'Muay Thai — Prof. Yan'}</button><button class="opt-btn${kravSel?' sel-krav':''}" onclick="toggleMA('${m.id}','krav')" ${!kravSel&&maFull?'disabled':''}><span class="opt-dot${kravSel?' on':''}"></span>${kravSel?'Krav Maga ✓':'Krav Maga'}</button><button class="opt-btn${jiuSel?' sel-jiu':''}" onclick="toggleMA('${m.id}','jiu')" ${!jiuSel&&maFull?'disabled':''}><span class="opt-dot${jiuSel?' on':''}"></span>${jiuSel?'Jiu-Jitsu ✓':'Jiu-Jitsu'}</button><div class="mc-sec-title">📝 Objetivos do mês</div><textarea class="mc-notes" placeholder="Simulados? Metas de nota? Foco em qual matéria?" onchange="saveNote('${m.id}',this.value)">${ms.notes||''}</textarea></div>`;
 }
-function rejectSlot() {
-  const id = ST.editId; if (!id) return;
-  ST.slots[id] = { ...ST.slots[id], status: 'rejeitada', valNote: document.getElementById('valNoteInp').value.trim() };
-  saveST(); closeModal(); updatePending(); renderTimeline();
+function toggleEng(id){const ms=ST.months[id];if(!ms.eng&&cntEng()>=1)return;ms.eng=!ms.eng;saveST();renderPlanner();}
+function toggleMA(id,type){const ms=ST.months[id];if(ms.ma===type){ms.ma=null;}else{if(!ms.ma&&cntMA()>=2)return;ms.ma=type;}saveST();renderPlanner();}
+function saveNote(id,val){ST.months[id].notes=val;saveST();}
+
+// ══ MATÉRIAS ══════════════════════════════════
+function getTotal(id){return['seg','ter','qua','qui','sex'].reduce((a,d)=>a+Number(ST.hrs[id]?.[d]||0),0);}
+function renderMaterias(){
+  document.getElementById('subCards').innerHTML=SUBJECTS_DEF.map(s=>{const hrs=getTotal(s.id),pct=Math.min(100,Math.round(hrs/s.goal*100));return`<div class="sc ${s.cls}"><div class="sc-ico">${s.ico}</div><div class="sc-name">${s.lbl}</div><div class="sc-hrs">${hrs}<span style="font-size:13px;font-weight:400;">h</span></div><div class="sc-goal">Meta: ${s.goal}h/semana</div><div class="sc-bar"><div class="sc-fill" style="width:${pct}%;background:currentColor;"></div></div></div>`;}).join('');
+  const wkDays=['seg','ter','qua','qui','sex'],dN=['Seg','Ter','Qua','Qui','Sex'];
+  document.getElementById('wkGrid').innerHTML=`<div class="wk-head"><div>Matéria</div>${dN.map(d=>`<div>${d}</div>`).join('')}<div>Total</div></div>`+SUBJECTS_DEF.map(s=>`<div class="wk-row"><div class="wk-sub"><span class="wk-dot" style="background:${s.dot}"></span>${s.ico} ${s.lbl}</div>${wkDays.map(d=>`<div><input class="hr-inp" type="number" min="0" max="8" step="0.5" value="${ST.hrs[s.id]?.[d]||''}" placeholder="0" onchange="setHr('${s.id}','${d}',this.value)"></div>`).join('')}<div class="wk-total">${getTotal(s.id)}h</div></div>`).join('');
+}
+function setHr(sid,day,val){ST.hrs[sid][day]=Number(val)||0;saveST();renderMaterias();}
+
+// ══ BOOT ══════════════════════════════════════
+if (FB_URL) { initApp(); } else { document.getElementById('setupScreen').style.display='flex'; }
+
+// Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
 }
 
-// ══════════════════════════════════════════════
-//  MONTH PLANNER
-// ══════════════════════════════════════════════
-function cntEng() { return MONTHS.filter(m => ST.months[m.id]?.eng).length; }
-function cntMA() { return MONTHS.filter(m => ST.months[m.id]?.ma).length; }
-function renderPlanner() {
-  const eM = MONTHS.filter(m => ST.months[m.id]?.eng).map(m => m.name).join(', ') || 'Nenhum selecionado';
-  const maM = MONTHS.filter(m => ST.months[m.id]?.ma).map(m => `${m.name} (${ST.months[m.id].ma === 'krav' ? 'Krav Maga' : 'Prof. Iam'})`).join(', ') || 'Nenhum selecionado';
-  document.getElementById('planSummary').innerHTML = `<div class="ps-item"><div class="ps-label">🇺🇸 Inglês Presencial TOEFL (máx. 1 mês)</div><div class="ps-val">${eM}</div></div><div class="ps-item"><div class="ps-label">🥋 Artes Marciais (máx. 2 meses)</div><div class="ps-val">${maM}</div></div>`;
-  document.getElementById('monthsGrid').innerHTML = MONTHS.map(renderMC).join('');
-}
-function renderMC(m) {
-  const ms = ST.months[m.id];
-  const engFull = cntEng() >= 1 && !ms.eng, maFull = cntMA() >= 2 && !ms.ma;
-  const kravSel = ms.ma === 'krav', iamSel = ms.ma === 'iam';
-  const specTags = [ms.eng ? '<span class="mc-tag" style="background:var(--eng);color:var(--eng-t);">🇺🇸 Inglês Presencial</span>' : '', kravSel ? '<span class="mc-tag" style="background:var(--box);color:var(--box-t);">🥋 Krav Maga</span>' : '', iamSel ? '<span class="mc-tag" style="background:var(--rev);color:var(--rev-t);">🥊 Prof. Iam</span>' : ''].join('');
-  return `<div class="mc${(ms.eng || ms.ma) ? ' has-act' : ''}" id="mc-${m.id}"><div class="mc-name">${m.name}</div><div class="mc-year">${m.yr}</div><div class="mc-fixed-tags"><span class="mc-tag t-uni">🎓 Faculdade</span><span class="mc-tag t-gym">💪 Academia</span><span class="mc-tag t-box">🥊 Boxe</span><span class="mc-tag t-ther">🧠 Terapia</span>${specTags}</div><div class="mc-sec-title">🇺🇸 Inglês Presencial — TOEFL</div><button class="opt-btn${ms.eng ? ' sel-eng' : ''}" onclick="toggleEng('${m.id}')" ${engFull ? 'disabled' : ''}><span class="opt-dot${ms.eng ? ' on' : ''}"></span>${ms.eng ? 'Selecionado ✓' : engFull ? 'Já escolhido em outro mês' : 'Selecionar este mês'}</button><div class="mc-sec-title">🥋 Artes Marciais</div><button class="opt-btn${kravSel ? ' sel-krav' : ''}" onclick="toggleMA('${m.id}','krav')" ${!kravSel && maFull ? 'disabled' : ''}><span class="opt-dot${kravSel ? ' on' : ''}"></span>${kravSel ? 'Krav Maga ✓' : 'Krav Maga'}</button><button class="opt-btn${iamSel ? ' sel-iam' : ''}" onclick="toggleMA('${m.id}','iam')" ${!iamSel && maFull ? 'disabled' : ''}><span class="opt-dot${iamSel ? ' on' : ''}"></span>${iamSel ? 'Prof. Iam ✓' : 'Aulas com Prof. Iam'}</button><div class="mc-sec-title">📝 Objetivos do mês</div><textarea class="mc-notes" placeholder="O que quer focar neste mês? Provas? Conteúdos?" onchange="saveNote('${m.id}',this.value)">${ms.notes || ''}</textarea></div>`;
-}
-function toggleEng(id) { const ms = ST.months[id]; if (!ms.eng && cntEng() >= 1) return; ms.eng = !ms.eng; saveST(); renderPlanner(); }
-function toggleMA(id, type) { const ms = ST.months[id]; if (ms.ma === type) { ms.ma = null; } else { if (!ms.ma && cntMA() >= 2) return; ms.ma = type; } saveST(); renderPlanner(); }
-function saveNote(id, val) { ST.months[id].notes = val; saveST(); }
-
-// ══════════════════════════════════════════════
-//  MATÉRIAS
-// ══════════════════════════════════════════════
-function getTotal(id) { return ['seg','ter','qua','qui','sex'].reduce((a, d) => a + Number(ST.hrs[id]?.[d] || 0), 0); }
-function renderMaterias() {
-  document.getElementById('subCards').innerHTML = SUBJECTS_DEF.map(s => {
-    const hrs = getTotal(s.id), pct = Math.min(100, Math.round(hrs / s.goal * 100));
-    return `<div class="sc ${s.cls}"><div class="sc-ico">${s.ico}</div><div class="sc-name">${s.lbl}</div><div class="sc-hrs">${hrs}<span style="font-size:13px;font-weight:400;">h</span></div><div class="sc-goal">Meta: ${s.goal}h/semana</div><div class="sc-bar"><div class="sc-fill" style="width:${pct}%;background:currentColor;"></div></div></div>`;
-  }).join('');
-  const wkDays = ['seg','ter','qua','qui','sex'], dN = ['Seg','Ter','Qua','Qui','Sex'];
-  document.getElementById('wkGrid').innerHTML = `<div class="wk-head"><div>Matéria</div>${dN.map(d => `<div>${d}</div>`).join('')}<div>Total</div></div>` + SUBJECTS_DEF.map(s => `<div class="wk-row"><div class="wk-sub"><span class="wk-dot" style="background:${s.dot}"></span>${s.ico} ${s.lbl}</div>${wkDays.map(d => `<div><input class="hr-inp" type="number" min="0" max="8" step="0.5" value="${ST.hrs[s.id]?.[d] || ''}" placeholder="0" onchange="setHr('${s.id}','${d}',this.value)"></div>`).join('')}<div class="wk-total">${getTotal(s.id)}h</div></div>`).join('');
-}
-function setHr(sid, day, val) { ST.hrs[sid][day] = Number(val) || 0; saveST(); renderMaterias(); }
-
-// ══════════════════════════════════════════════
-//  BOOT
-// ══════════════════════════════════════════════
-if (FB_URL) {
-  initApp();
-} else {
-  document.getElementById('setupScreen').style.display = 'flex';
-}
+// iOS install hint (Safari only, not yet installed as standalone)
+window.addEventListener('load', () => {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+  const dismissed = sessionStorage.getItem('iosHintDismissed');
+  if (isIOS && !isStandalone && !dismissed) {
+    document.getElementById('iosHint').style.display = 'flex';
+    document.getElementById('iosHint').querySelector('button').addEventListener('click', () => {
+      sessionStorage.setItem('iosHintDismissed','1');
+    });
+  }
+});
 </script>
 </body>
 </html>
