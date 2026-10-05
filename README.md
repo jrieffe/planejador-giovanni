@@ -1,24 +1,23 @@
 # Planejador · Giovanni M. J. Afonso
 
-Planejador semanal e mensal para organização de estudos, esporte e rotina.
-**Set/2025 – Fev/2026 · Vestibular de Medicina · TOEFL**
+Agenda semanal de estudos e rotina, sincronizada entre Giovanni e o Pai via Firebase Realtime Database. Instalável no iPhone (Safari → Compartilhar → Adicionar à Tela de Início).
 
-## 🚀 Como usar
+- **Até 31/12/2026:** Inglês + Francês
+- **A partir de jan/2027:** Biologia, Química e Física no idioma escolhido (editável)
+- Rotina fixa: musculação seg/qua/sex 15h · luta ter/qui 15h · Lidiane qua 17h · futebol qua 18:30
 
-1. Acesse o planejador pelo link do GitHub Pages
-2. **Giovanni** preenche os horários de estudo e clica em 📤 Compartilhar
-3. **Pai (Jader)** abre o link, ativa Modo Pai e aprova os blocos
-4. Pai compartilha o link validado de volta
+## Arquivos
+- `index.html` — o app
+- `tutorial_giovanni.html` — como usar
+- `sw.js`, `manifest.json`, ícones — PWA
 
-## 📁 Arquivos
-
-- `index.html` — O planejador interativo
-- `tutorial.html` — Tutorial de uso passo a passo
-
-## 🌐 GitHub Pages
-
-Após habilitar o GitHub Pages nas configurações do repositório, acesse:
-`https://SEU-USUARIO.github.io/planejador-giovanni/`
-
----
-*Feito com carinho para o Giovanni — vai dar certo na medicina! 🩺*
+## Regras do Firebase
+Realtime Database → Regras:
+```json
+{
+  "rules": {
+    "giovanni2027": { ".read": true, ".write": true },
+    "gio_test": { ".read": true, ".write": true }
+  }
+}
+```
