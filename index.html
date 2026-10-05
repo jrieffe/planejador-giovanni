@@ -339,7 +339,7 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
   <footer class="footer">
     <span>Planejador · Giovanni M. J. Afonso</span>
     <a href="tutorial_giovanni.html">📖 Como usar</a>
-    <button class="reset-link" onclick="resetConfig()">⚙️ Trocar Firebase</button>
+    <button class="reset-link" onclick="resetConfig()">⚙️ Outro banco</button>
   </footer>
 </div>
 
@@ -351,7 +351,8 @@ const CFG_KEY = 'gio_fb_url';
 const LOCAL_KEY = 'gio27';
 const ROOT = 'giovanni2027';
 const PHASE2_START = new Date(2027, 0, 1); // 01/01/2027
-let FB_URL = localStorage.getItem(CFG_KEY);
+const DEFAULT_FB = 'https://giovanni-planner-default-rtdb.firebaseio.com';
+let FB_URL = localStorage.getItem(CFG_KEY) || DEFAULT_FB;
 
 function normalizeFbUrl(raw) {
   let s = (raw || '').trim();
@@ -419,9 +420,9 @@ async function configureFB() {
 }
 
 function resetConfig() {
-  if (!confirm('Trocar o link do Firebase neste aparelho?')) return;
+  if (!confirm('Usar outro banco Firebase neste aparelho?')) return;
   localStorage.removeItem(CFG_KEY); FB_URL = null;
-  document.getElementById('fbUrlInput').value = '';
+  document.getElementById('fbUrlInput').value = DEFAULT_FB;
   showSetup();
 }
 
@@ -921,11 +922,22 @@ function resetWeek() {
 // ══════════════════════════════════════════════
 //  BOOT
 // ══════════════════════════════════════════════
-if (FB_URL && !normalizeFbUrl(FB_URL)) { localStorage.removeItem(CFG_KEY); FB_URL = null; }
+if (!normalizeFbUrl(FB_URL)) { localStorage.removeItem(CFG_KEY); FB_URL = DEFAULT_FB; }
 if (FB_URL) initApp(); else showSetup();
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  // When a new version is published, the new service worker takes over and the page reloads once.
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (hadController && !reloaded) { reloaded = true; location.reload(); }
+  });
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').then(reg => {
+      reg.update().catch(() => {});
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) reg.update().catch(() => {}); });
+    }).catch(() => {});
+  });
 }
 window.addEventListener('load', () => {
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);

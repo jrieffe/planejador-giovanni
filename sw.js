@@ -1,5 +1,5 @@
 // Network-first: always try the latest version from GitHub Pages, fall back to cache when offline.
-const CACHE = 'gio-planner-v3';
+const CACHE = 'gio-planner-v4';
 const SHELL = ['./', './index.html', './tutorial_giovanni.html', './manifest.json',
                './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
