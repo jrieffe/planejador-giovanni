@@ -86,11 +86,6 @@ pre.rules{background:#0F172A;color:#E2E8F0;border-radius:8px;padding:10px 12px;f
 .info-bar{background:#fff;border-bottom:1px solid var(--bg2);padding:8px 16px;font-size:11.5px;color:var(--muted);}
 
 /* PHASE */
-.phase-bar{background:#fff;border-bottom:1px solid var(--bg2);padding:10px 16px;display:flex;flex-direction:column;gap:8px;}
-.phase-toggle{display:flex;gap:6px;flex-wrap:wrap;}
-.phase-btn{flex:1;min-width:140px;padding:9px 10px;border-radius:10px;border:1.5px solid var(--bg2);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;text-align:left;line-height:1.3;}
-.phase-btn small{display:block;font-weight:400;font-size:10.5px;opacity:.8;}
-.phase-btn.active{background:var(--ink);border-color:var(--ink);color:#fff;}
 .lang-row{display:none;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
 .lang-row.show{display:flex;}
 .lang-btn{padding:6px 12px;border-radius:20px;border:1.5px solid var(--bg2);background:#fff;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);}
@@ -162,22 +157,48 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 .mc.has-act{border-color:#F59E0B;}
 .mc-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
 .mc-year{font-size:10px;color:var(--lt);margin-top:1px;margin-bottom:8px;}
-.mc-phase{display:inline-block;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;margin-bottom:10px;}
-.mc-phase.p1{background:var(--fra);color:var(--fra-t);}
-.mc-phase.p2{background:var(--bio);color:var(--bio-t);}
 .mc-fixed-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
 .mc-tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;}
 .mc-sec-title{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;margin-top:12px;}
 .opt-btn{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:var(--r);border:1.5px solid var(--bg2);background:#fff;width:100%;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:inherit;margin-bottom:5px;text-align:left;}
 .opt-btn:disabled{opacity:.38;cursor:not-allowed;}
-.opt-btn.sel-en{background:var(--eng);border-color:var(--eng-b);color:var(--eng-t);font-weight:700;}
-.opt-btn.sel-fr{background:var(--fra);border-color:var(--fra-b);color:var(--fra-t);font-weight:700;}
-.opt-btn.sel-muay{background:#FFF3E0;border-color:#EA580C;color:#7C2D12;font-weight:700;}
-.opt-btn.sel-krav{background:#FEE2E2;border-color:#DC2626;color:#7F1D1D;font-weight:700;}
-.opt-btn.sel-jiu{background:#EFF6FF;border-color:#1D4ED8;color:#1E3A8A;font-weight:700;}
+.sel-en{background:var(--eng);border-color:var(--eng-b);color:var(--eng-t);font-weight:700;}
+.sel-fr{background:var(--fra);border-color:var(--fra-b);color:var(--fra-t);font-weight:700;}
+.sel-muay{background:#FFF3E0;border-color:#EA580C;color:#7C2D12;font-weight:700;}
+.sel-krav{background:#FEE2E2;border-color:#DC2626;color:#7F1D1D;font-weight:700;}
+.sel-jiu{background:#EFF6FF;border-color:#1D4ED8;color:#1E3A8A;font-weight:700;}
 .opt-dot{width:10px;height:10px;border-radius:50%;border:2px solid currentColor;flex-shrink:0;}
 .opt-dot.on{background:currentColor;}
 .mc-notes{width:100%;padding:8px 10px;border:1.5px solid var(--bg2);border-radius:var(--r);font-size:12px;font-family:inherit;color:var(--ink);resize:none;outline:none;height:56px;background:var(--bg);margin-top:4px;}
+
+/* MÊS */
+.month-bar{background:#fff;border-bottom:1px solid var(--bg2);padding:10px 16px;display:flex;flex-direction:column;gap:10px;}
+.month-chips{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 2px;}
+.mchip{flex-shrink:0;position:relative;padding:7px 13px;border-radius:20px;border:1.5px solid var(--bg2);background:#fff;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;}
+.mchip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+.mchip .mdot{position:absolute;top:-6px;right:-4px;background:#EF4444;color:#fff;font-size:9.5px;font-weight:700;border-radius:10px;padding:1px 5px;}
+.month-dash{background:var(--bg);border:1px solid var(--bg2);border-radius:12px;padding:11px 12px;display:flex;flex-direction:column;gap:7px;font-size:12px;}
+.dash-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;}
+.dash-row{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;}
+.dash-k{font-weight:700;color:var(--muted);min-width:122px;padding-top:3px;}
+.dash-v{display:flex;flex-wrap:wrap;gap:5px;flex:1;min-width:0;}
+.dash-notes{display:block;color:var(--ink);line-height:1.45;padding-top:3px;}
+.pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:12px;border:1px solid transparent;}
+.pill.muted{background:#F1F5F9;color:#64748B;}
+.dash-edit{align-self:flex-start;background:none;border:none;color:#1D4ED8;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:2px 0 0;}
+.chk{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r);border:1.5px solid;width:100%;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;margin-bottom:5px;text-align:left;}
+.chk:not(.on){background:#fff;border-color:var(--bg2);color:var(--muted);}
+.chk .box{width:16px;height:16px;border-radius:4px;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+.chk.on{font-weight:700;}
+.chk small{font-weight:500;opacity:.8;}
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 6px;}
+.mc.current{box-shadow:0 0 0 3px rgba(28,25,23,.12);}
+.mc-def{font-weight:500;text-transform:none;letter-spacing:0;color:var(--lt);}
+.mc-go{margin-top:10px;width:100%;padding:10px;border-radius:var(--r);border:none;background:var(--ink);color:#fff;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;}
+.sub-mat{background:#EDE9FE;border-color:#7C3AED;color:#4C1D95;}
+.val-bar{align-items:center;gap:10px;flex-wrap:wrap;}
+.val-bar.show{display:flex;}
+.apr-all{margin-left:auto;background:#16A34A;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;}
 
 /* MATÉRIAS */
 .mat-pad{padding:14px;}
@@ -257,20 +278,18 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
   </header>
 
   <div class="err-bar" id="errBar"></div>
-  <div class="val-bar" id="valBar">⏳ Modo Pai — toque nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.</div>
+  <div class="val-bar" id="valBar"><span>⏳ Modo Pai — toque nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.</span><button class="apr-all" id="aprAllBtn" onclick="approveAllMonth()">✅ Aprovar todas do mês</button></div>
 
   <nav class="tabs">
-    <button class="tab-btn active" data-tab="agenda" onclick="setTab('agenda')">📅 Agenda Semanal</button>
-    <button class="tab-btn" data-tab="plano" onclick="setTab('plano')">🗓️ Plano Out/26–Mar/27</button>
+    <button class="tab-btn active" data-tab="agenda" onclick="setTab('agenda')">📅 Agenda</button>
+    <button class="tab-btn" data-tab="plano" onclick="setTab('plano')">🗓️ Plano mês a mês</button>
     <button class="tab-btn" data-tab="materias" onclick="setTab('materias')">📚 Matérias</button>
   </nav>
 
   <div class="tab-pane active" id="tab-agenda">
-    <div class="phase-bar">
-      <div class="phase-toggle">
-        <button class="phase-btn" data-phase="1" onclick="setPhase(1)">🗣️ Até 31/12/2026<small>Inglês + Francês</small></button>
-        <button class="phase-btn" data-phase="2" onclick="setPhase(2)">🔬 A partir de Jan/2027<small>Biologia · Química · Física</small></button>
-      </div>
+    <div class="month-bar">
+      <div class="month-chips"></div>
+      <div class="month-dash" id="monthDash"></div>
       <div class="lang-row" id="langRow">
         <span>Ciências em:</span>
         <button class="lang-btn en" data-lang="en" onclick="setLang('en')">🇬🇧 Inglês</button>
@@ -289,6 +308,7 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
   </div>
 
   <div class="tab-pane" id="tab-materias">
+    <div class="month-bar"><div class="month-chips"></div></div>
     <div class="mat-pad">
       <div class="mat-top">
         <div class="mat-h" id="matTitle">Horas por matéria — semana atual</div>
@@ -350,7 +370,6 @@ textarea.form-ctrl{resize:vertical;min-height:70px;}
 const CFG_KEY = 'gio_fb_url';
 const LOCAL_KEY = 'gio27';
 const ROOT = 'giovanni2027';
-const PHASE2_START = new Date(2027, 0, 1); // 01/01/2027
 const DEFAULT_FB = 'https://giovanni-planner-default-rtdb.firebaseio.com';
 let FB_URL = localStorage.getItem(CFG_KEY) || DEFAULT_FB;
 
@@ -542,28 +561,50 @@ const ALMOCO = F('12:00','13:00','Almoço','meal','🍽️');
 const DORMIR = F('22:30',null,'Dormir','sleep','🌙');
 const ACAD   = F('15:00','16:15','Academia — Musculação','gym','💪');
 const ACAD_B = F('16:15','16:45','Banho + Lanche','rest','🚿');
-const LUTA   = F('15:00','16:30','Arte Marcial','box','🥋','Muay Thai (Prof. Yan) · Krav Maga · Jiu-Jitsu');
 const LUTA_B = F('16:30','17:00','Banho + Lanche','rest','🚿');
 const JANTAR = F('19:30','20:30','Jantar','meal','🍽️');
 const PAUSA  = F('10:30','11:00','Pausa','free','☕','30 min de intervalo');
 
-const FIXED = {
-  seg: [CAFE, ALMOCO, ACAD, ACAD_B, JANTAR, DORMIR],
-  ter: [CAFE, ALMOCO, LUTA, LUTA_B, JANTAR, DORMIR],
-  qua: [CAFE, ALMOCO, ACAD, ACAD_B,
-        F('17:00','18:00','Terapia — Lidiane','ther','🧠','Sessão semanal'),
-        F('18:30','20:00','Futebol','fut','⚽'),
-        F('20:15','21:00','Jantar','meal','🍽️'), DORMIR],
-  qui: [CAFE, ALMOCO, LUTA, LUTA_B, JANTAR, DORMIR],
-  sex: [CAFE, ALMOCO, ACAD, ACAD_B, JANTAR, F('20:30','22:30','Noite livre','free','🎉'), DORMIR],
-  sab: [CAFE, PAUSA, ALMOCO, F('13:00','19:30','Tarde livre / Lazer','free','😎'), JANTAR, DORMIR],
-  dom: [CAFE, PAUSA, ALMOCO,
-        F('13:00','17:00','Tempo livre / Família','rest','🏡','Em casa com os pais'),
-        F('18:00','20:00','Jogo do Flamengo 🔴⚫','fla','⚽','Momento sagrado!'),
-        F('20:30','21:00','Jantar','meal','🍽️'), DORMIR]
-};
+const MA_LABEL = { muay:'Muay Thai — Prof. Yan', krav:'Krav Maga', jiu:'Jiu-Jitsu' };
+const MA_ICON  = { muay:'🥊', krav:'🛡️', jiu:'🥋' };
+const MA_ORDER = ['muay','krav','jiu'];
+const LANG_NAME = { en: 'Inglês', fr: 'Francês' };
+const COURSE_ORDER = ['en','fr'];
 
-// Each study block: fase 1 (até 31/12/2026) and fase 2 (a partir de jan/2027) suggestions
+// Martial arts of the month: 1 → ter e qui · 2 → ter / qui · 3 → ter / qui / sáb
+function artDays(arts) {
+  if (arts.length === 1) return { [arts[0]]: 'ter e qui' };
+  const d = ['ter','qui','sáb'], o = {};
+  arts.forEach((a, i) => o[a] = d[i]);
+  return o;
+}
+function fixedFor(day, mid) {
+  const arts = monthArts(mid);
+  const pick = i => arts.length ? arts[Math.min(i, arts.length - 1)] : null;
+  const art = a => a
+    ? F('15:00','16:30', MA_LABEL[a], 'box', MA_ICON[a], arts.length > 1 ? `${arts.length} modalidades neste mês` : '')
+    : F('15:00','16:30', 'Arte marcial — a definir', 'box', '🥋', 'Marque a modalidade no Plano do mês');
+  switch (day) {
+    case 'seg': return [CAFE, ALMOCO, ACAD, ACAD_B, JANTAR, DORMIR];
+    case 'ter': return [CAFE, ALMOCO, art(pick(0)), LUTA_B, JANTAR, DORMIR];
+    case 'qua': return [CAFE, ALMOCO, ACAD, ACAD_B,
+      F('17:00','18:00','Terapia — Lidiane','ther','🧠','Sessão semanal'),
+      F('18:30','20:00','Futebol','fut','⚽'),
+      F('20:15','21:00','Jantar','meal','🍽️'), DORMIR];
+    case 'qui': return [CAFE, ALMOCO, art(pick(1)), LUTA_B, JANTAR, DORMIR];
+    case 'sex': return [CAFE, ALMOCO, ACAD, ACAD_B, JANTAR, F('20:30','22:30','Noite livre','free','🎉'), DORMIR];
+    case 'sab': return arts.length >= 3
+      ? [CAFE, PAUSA, ALMOCO, F('13:00','15:00','Livre','free','😎'), art(arts[2]), LUTA_B, F('17:00','19:30','Tarde livre / Lazer','free','😎'), JANTAR, DORMIR]
+      : [CAFE, PAUSA, ALMOCO, F('13:00','19:30','Tarde livre / Lazer','free','😎'), JANTAR, DORMIR];
+    case 'dom': return [CAFE, PAUSA, ALMOCO,
+      F('13:00','17:00','Tempo livre / Família','rest','🏡','Em casa com os pais'),
+      F('18:00','20:00','Jogo do Flamengo 🔴⚫','fla','⚽','Momento sagrado!'),
+      F('20:30','21:00','Jantar','meal','🍽️'), DORMIR];
+  }
+  return [];
+}
+
+// Study blocks. p1/h1 = suggestion Out–Dez/2026, p2/h2 = suggestion Jan–Mar/2027 (used when the month keeps the default subjects)
 const S = (id, s, e, p1, h1, p2, h2) => ({ id, s, e, p1, h1, p2, h2 });
 const SLOTS = {
   seg: [
@@ -608,72 +649,100 @@ const SLOTS = {
   ]
 };
 
-const LANG_NAME = { en: 'Inglês', fr: 'Francês' };
-function tokLabel(tok) {
-  const L = LANG_NAME[ST.lang] || 'Inglês';
-  return ({
-    ENG: 'Inglês', FRA: 'Francês',
-    BIO: `Biologia (em ${L})`, QUI: `Química (em ${L})`, FIS: `Física (em ${L})`,
-    IDI: L, REV: 'Revisão Geral'
-  })[tok] || tok;
-}
-
-function subjectOptions(phase) {
-  const L = LANG_NAME[ST.lang] || 'Inglês';
-  return phase === 1
-    ? ['Inglês','Francês','Redação','Português','Revisão Geral']
-    : [`Biologia (em ${L})`,`Química (em ${L})`,`Física (em ${L})`,`Matemática (em ${L})`,'Inglês','Francês','Redação','Português','Revisão Geral'];
-}
-
-function subCls(s) {
+const SUBJ = {
+  eng:  { name:'Inglês',        ico:'🇬🇧', cls:'sub-eng',  dot:'#3F51B5', hint:'Grammar, reading, listening ou speaking' },
+  fra:  { name:'Francês',       ico:'🇫🇷', cls:'sub-fra',  dot:'#0284C7', hint:'Gramática, vocabulário, compreensão oral' },
+  bio:  { name:'Biologia',      ico:'🔬', cls:'sub-bio',  dot:'#059669', sci:true, hint:'Teoria + exercícios' },
+  qui:  { name:'Química',       ico:'🧪', cls:'sub-qui',  dot:'#DC2626', sci:true, hint:'Teoria + exercícios' },
+  fis:  { name:'Física',        ico:'⚛️', cls:'sub-fis',  dot:'#65A30D', sci:true, hint:'Teoria + problemas' },
+  mat:  { name:'Matemática',    ico:'📐', cls:'sub-mat',  dot:'#7C3AED', sci:true, hint:'Exercícios' },
+  red:  { name:'Redação',       ico:'✍️', cls:'sub-red',  dot:'#F57C00', hint:'Texto completo ou revisão' },
+  port: { name:'Português',     ico:'📝', cls:'sub-port', dot:'#0D9488', hint:'Interpretação, gramática, literatura' },
+  rev:  { name:'Revisão Geral', ico:'🔁', cls:'sub-rev',  dot:'#9C27B0', hint:'Revisão da semana' }
+};
+const SUBJ_ORDER = ['eng','fra','bio','qui','fis','mat','red','port','rev'];
+const TOK = { ENG:'eng', FRA:'fra', BIO:'bio', QUI:'qui', FIS:'fis', REV:'rev' };
+const langId = () => ST.lang === 'fr' ? 'fra' : 'eng';
+const subName = id => SUBJ[id] ? (SUBJ[id].sci ? `${SUBJ[id].name} (em ${LANG_NAME[ST.lang]})` : SUBJ[id].name) : id;
+function subIdFromLabel(s) {
   s = s || '';
-  if (/^Ingl/i.test(s)) return 'sub-eng';
-  if (/^Franc/i.test(s)) return 'sub-fra';
-  if (/^Biolog/i.test(s)) return 'sub-bio';
-  if (/^Qu[ií]m/i.test(s)) return 'sub-qui';
-  if (/^F[ií]sic/i.test(s)) return 'sub-fis';
-  if (/^Reda/i.test(s)) return 'sub-red';
-  if (/^Portug/i.test(s)) return 'sub-port';
-  if (/^Revis/i.test(s)) return 'sub-rev';
-  return 'slot-apr';
+  for (const id of SUBJ_ORDER) if (s === subName(id) || s.startsWith(SUBJ[id].name)) return id;
+  return null;
 }
+function subCls(label) { const id = subIdFromLabel(label); return id ? SUBJ[id].cls : 'slot-apr'; }
 
 const MONTHS = [
-  { id:'out26', name:'Outubro',   yr:2026, phase:1 },
-  { id:'nov26', name:'Novembro',  yr:2026, phase:1 },
-  { id:'dez26', name:'Dezembro',  yr:2026, phase:1 },
-  { id:'jan27', name:'Janeiro',   yr:2027, phase:2 },
-  { id:'fev27', name:'Fevereiro', yr:2027, phase:2 },
-  { id:'mar27', name:'Março',     yr:2027, phase:2 }
+  { id:'out26', name:'Outubro',   short:'Out', yr:2026, ym:2026*12+9,  phase:1 },
+  { id:'nov26', name:'Novembro',  short:'Nov', yr:2026, ym:2026*12+10, phase:1 },
+  { id:'dez26', name:'Dezembro',  short:'Dez', yr:2026, ym:2026*12+11, phase:1 },
+  { id:'jan27', name:'Janeiro',   short:'Jan', yr:2027, ym:2027*12+0,  phase:2 },
+  { id:'fev27', name:'Fevereiro', short:'Fev', yr:2027, ym:2027*12+1,  phase:2 },
+  { id:'mar27', name:'Março',     short:'Mar', yr:2027, ym:2027*12+2,  phase:2 }
 ];
-const MA_LABEL = { muay:'Muay Thai — Prof. Yan', krav:'Krav Maga', jiu:'Jiu-Jitsu' };
+const monthById = id => MONTHS.find(m => m.id === id) || MONTHS[0];
+const monthTag = m => `${m.short}/${String(m.yr).slice(2)}`;
+function currentMonthId() {
+  const d = new Date(), ym = d.getFullYear() * 12 + d.getMonth();
+  if (ym <= MONTHS[0].ym) return MONTHS[0].id;
+  return (MONTHS.find(m => m.ym === ym) || MONTHS[MONTHS.length - 1]).id;
+}
 
-const SUBJECTS = {
-  1: [
-    { id:'eng', lbl:'Inglês',  ico:'🇬🇧', cls:'sub-eng', dot:'#3F51B5', goal:15 },
-    { id:'fra', lbl:'Francês', ico:'🇫🇷', cls:'sub-fra', dot:'#0284C7', goal:15 }
-  ],
-  2: [
-    { id:'bio', lbl:'Biologia', ico:'🔬', cls:'sub-bio', dot:'#059669', goal:6 },
-    { id:'qui', lbl:'Química',  ico:'🧪', cls:'sub-qui', dot:'#DC2626', goal:6 },
-    { id:'fis', lbl:'Física',   ico:'⚛️', cls:'sub-fis', dot:'#65A30D', goal:5 },
-    { id:'idi', lbl:'Idioma',   ico:'🗣️', cls:'sub-eng', dot:'#3F51B5', goal:8 },
-    { id:'rev', lbl:'Revisão',  ico:'🔁', cls:'sub-rev', dot:'#9C27B0', goal:4 }
-  ]
-};
+// Month selections — stored as comma lists so several options can be marked
+const listOf = v => (typeof v === 'string' ? v.split(',') : []).map(x => x.trim()).filter(Boolean);
+const defaultSubs = mid => monthById(mid).phase === 1 ? ['eng','fra'] : ['bio','qui','fis', langId()];
+const subsCustom = mid => typeof ST.months[mid]?.subs === 'string';
+const monthSubs = mid => subsCustom(mid) ? listOf(ST.months[mid].subs).filter(id => SUBJ[id]) : defaultSubs(mid);
+const monthArts = mid => listOf(ST.months[mid]?.ma).filter(a => MA_LABEL[a]).sort((a, b) => MA_ORDER.indexOf(a) - MA_ORDER.indexOf(b));
+const monthCourses = mid => listOf(ST.months[mid]?.course).filter(c => LANG_NAME[c]).sort((a, b) => COURSE_ORDER.indexOf(a) - COURSE_ORDER.indexOf(b));
+
+const mins = (s, e) => { const [a, b] = s.split(':').map(Number), [c, d] = e.split(':').map(Number); return c * 60 + d - (a * 60 + b); };
+const durTxt = m => m >= 60 ? Math.floor(m / 60) + 'h' + (m % 60 ? String(m % 60).padStart(2, '0') : '') : m + 'min';
+
+// Suggested subject for each study block of the month
+let sugCache = { k: null, v: null };
+function suggestions(mid) {
+  const k = [mid, ST.months[mid]?.subs ?? '·', ST.lang].join('|');
+  if (sugCache.k === k) return sugCache.v;
+  const m = monthById(mid), subs = monthSubs(mid), def = defaultSubs(mid), out = {};
+  const sameAsDefault = subs.length === def.length && def.every(x => subs.includes(x));
+  if (sameAsDefault) {
+    for (const d of DAYS) for (const s of SLOTS[d]) {
+      const tok = m.phase === 1 ? s.p1 : s.p2;
+      out[s.id] = { sub: tok === 'IDI' ? langId() : TOK[tok], hint: m.phase === 1 ? s.h1 : s.h2 };
+    }
+  } else if (!subs.length) {
+    for (const d of DAYS) for (const s of SLOTS[d]) out[s.id] = { sub: null, hint: 'Nenhuma matéria marcada no Plano deste mês' };
+  } else {
+    // spread the week's hours evenly among the marked subjects, avoiding the same subject twice in a row
+    const acc = Object.fromEntries(subs.map(x => [x, 0]));
+    for (const d of DAYS) {
+      let prev = null;
+      for (const s of SLOTS[d]) {
+        const cands = subs.length > 1 ? subs.filter(x => x !== prev) : subs;
+        const pick = cands.reduce((best, x) => acc[x] < acc[best] ? x : best, cands[0]);
+        const len = mins(s.s, s.e);
+        acc[pick] += len; prev = pick;
+        out[s.id] = { sub: pick, hint: `${SUBJ[pick].hint} — ${durTxt(len)}` };
+      }
+    }
+  }
+  sugCache = { k, v: out };
+  return out;
+}
 
 // ══════════════════════════════════════════════
 //  ESTADO
 // ══════════════════════════════════════════════
 const ST = {
-  tab:'agenda', day: todayKey(), mode:'gio', phase: new Date() < PHASE2_START ? 1 : 2, editKey:null,
+  tab:'agenda', day: todayKey(), mode:'gio', month: null, editKey:null,
   slots:{}, months:{}, hrs:{}, lang:'en'
 };
 function todayKey() { return ['dom','seg','ter','qua','qui','sex','sab'][new Date().getDay()]; }
 
 function ensureDefaults() {
   MONTHS.forEach(m => { if (!ST.months[m.id] || typeof ST.months[m.id] !== 'object') ST.months[m.id] = {}; });
-  [...SUBJECTS[1], ...SUBJECTS[2]].forEach(s => { if (!ST.hrs[s.id] || typeof ST.hrs[s.id] !== 'object') ST.hrs[s.id] = {}; });
+  SUBJ_ORDER.forEach(id => { if (!ST.hrs[id] || typeof ST.hrs[id] !== 'object') ST.hrs[id] = {}; });
+  if (!ST.month) ST.month = currentMonthId();
 }
 function loadLocal() {
   try {
@@ -695,7 +764,7 @@ function buildStatic() {
   document.getElementById('dayNav').innerHTML = DAYS.map(d =>
     `<button class="day-btn" data-day="${d}" onclick="setDay('${d}')">${DAY_LABEL[d].replace('-feira','')}</button>`).join('');
 }
-function renderAll() { renderPhaseBar(); renderCurrent(); updatePending(); }
+function renderAll() { renderMonthBar(); renderCurrent(); updatePending(); }
 function renderCurrent() {
   if (ST.tab === 'agenda') renderTimeline();
   if (ST.tab === 'plano') renderPlanner();
@@ -705,27 +774,59 @@ function setTab(t) {
   ST.tab = t;
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === 'tab-' + t));
-  renderCurrent();
+  renderMonthBar(); renderCurrent();
+  window.scrollTo(0, 0);
 }
 function setDay(d) { ST.day = d; renderTimeline(); }
-function setPhase(p) { ST.phase = p; renderPhaseBar(); renderCurrent(); }
-function setLang(l) { if (ST.lang === l) return; commit('lang', l); renderAll(); showT('Ciências de 2027 em ' + LANG_NAME[l]); }
+function setMonth(mid) { ST.month = mid; renderAll(); }
+function goMonth(mid) { ST.month = mid; setTab('agenda'); }
+function setLang(l) { if (ST.lang === l) return; commit('lang', l); renderAll(); showT('Ciências em ' + LANG_NAME[l]); }
 
-function renderPhaseBar() {
-  document.querySelectorAll('.phase-btn').forEach(b => b.classList.toggle('active', +b.dataset.phase === ST.phase));
-  document.getElementById('langRow').classList.toggle('show', ST.phase === 2);
+const pendingIn = mid => Object.entries(ST.slots).filter(([k, v]) => k.startsWith(mid + '_') && v && v.status === 'proposta').length;
+
+function dashHtml(mid) {
+  const m = monthById(mid), subs = monthSubs(mid), arts = monthArts(mid), courses = monthCourses(mid), days = artDays(arts);
+  const notes = ST.months[mid]?.notes;
+  const subPills = subs.length
+    ? subs.map(id => `<span class="pill ${SUBJ[id].cls}">${SUBJ[id].ico} ${esc(subName(id))}</span>`).join('') + (subsCustom(mid) ? '' : '<span class="pill muted">padrão</span>')
+    : '<span class="pill muted">nenhuma marcada</span>';
+  const artPills = arts.length
+    ? arts.map(a => `<span class="pill sel-${a}">${MA_ICON[a]} ${MA_LABEL[a]} · ${days[a]}</span>`).join('')
+    : '<span class="pill muted">a definir</span>';
+  const coursePills = courses.length
+    ? courses.map(c => `<span class="pill sel-${c}">${c === 'en' ? '🇬🇧' : '🇫🇷'} ${LANG_NAME[c]}</span>`).join('')
+    : '<span class="pill muted">nenhum</span>';
+  return `<div class="dash-title">${m.name} de ${m.yr}</div>
+    <div class="dash-row"><span class="dash-k">📚 Matérias</span><span class="dash-v">${subPills}</span></div>
+    <div class="dash-row"><span class="dash-k">🥋 Arte marcial</span><span class="dash-v">${artPills}</span></div>
+    <div class="dash-row"><span class="dash-k">🗣️ Curso presencial</span><span class="dash-v">${coursePills}</span></div>
+    ${notes ? `<div class="dash-row"><span class="dash-k">📝 Objetivos</span><span class="dash-v dash-notes">${esc(notes)}</span></div>` : ''}
+    <button class="dash-edit" onclick="setTab('plano')">✏️ Editar no Plano do mês</button>`;
+}
+
+function renderMonthBar() {
+  const chips = MONTHS.map(m => {
+    const n = pendingIn(m.id);
+    return `<button class="mchip${m.id === ST.month ? ' active' : ''}" data-month="${m.id}" onclick="setMonth('${m.id}')">${monthTag(m)}${n ? `<span class="mdot">${n}</span>` : ''}</button>`;
+  }).join('');
+  document.querySelectorAll('.month-chips').forEach(el => el.innerHTML = chips);
+  document.getElementById('monthDash').innerHTML = dashHtml(ST.month);
+  const subs = monthSubs(ST.month);
+  const showLang = subs.some(id => SUBJ[id].sci) || monthById(ST.month).phase === 2;
+  document.getElementById('langRow').classList.toggle('show', showLang);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === ST.lang));
-  const legend = ST.phase === 1
-    ? [['--eng-b','Inglês'],['--fra-b','Francês']]
-    : [['--bio-b','Biologia'],['--qui-b','Química'],['--fis-b','Física'],[ST.lang === 'fr' ? '--fra-b' : '--eng-b', LANG_NAME[ST.lang]]];
-  document.getElementById('legend').innerHTML = legend.map(([c, l]) => `<div class="leg-item"><div class="leg-dot" style="background:var(${c})"></div>${l}</div>`).join('') +
+  document.getElementById('legend').innerHTML =
+    subs.map(id => `<div class="leg-item"><div class="leg-dot" style="background:${SUBJ[id].dot}"></div>${SUBJ[id].name}</div>`).join('') +
     `<div class="leg-item"><div class="leg-dot" style="background:var(--sug-b)"></div>Sugestão</div>
      <div class="leg-item"><div class="leg-dot" style="background:var(--prop-b)"></div>Proposta</div>
      <div class="leg-item"><div class="leg-dot" style="background:var(--apr-b)"></div>Aprovado</div>
      <div class="leg-item"><div class="leg-dot" style="background:var(--rej-b)"></div>Revisar</div>`;
   document.getElementById('infoBar').innerHTML = ST.mode === 'pai'
     ? '🔒 <strong>Modo Pai:</strong> toque nos blocos <strong>amarelos</strong> para aprovar ou pedir revisão.'
-    : '💡 <strong>Giovanni:</strong> toque num bloco de estudo (tracejado) para escolher a matéria e propor o horário.' + (ST.phase === 2 ? ' Dá para trocar por outra disciplina.' : '');
+    : '💡 <strong>Giovanni:</strong> toque num bloco de estudo (tracejado) para escolher a matéria e propor o horário. Cada mês tem a sua agenda.';
+  const m = monthById(ST.month);
+  document.getElementById('aprAllBtn').textContent = `✅ Aprovar todas de ${m.name}`;
+  document.getElementById('matTitle').textContent = `Horas por matéria — ${m.name}/${m.yr}`;
 }
 
 function toggleMode() {
@@ -734,7 +835,7 @@ function toggleMode() {
   btn.textContent = ST.mode === 'pai' ? '👨 Modo Giovanni' : '🔒 Modo Pai';
   btn.classList.toggle('val', ST.mode === 'pai');
   document.getElementById('valBar').classList.toggle('show', ST.mode === 'pai');
-  renderPhaseBar(); renderTimeline();
+  renderMonthBar(); renderTimeline();
 }
 function updatePending() {
   const n = Object.values(ST.slots).filter(s => s && s.status === 'proposta').length;
@@ -746,22 +847,20 @@ function updatePending() {
 //  TIMELINE
 // ══════════════════════════════════════════════
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
-const slotKey = id => `p${ST.phase}_${id}`;
+const slotKey = id => `${ST.month}_${id}`;
 
 function slotView(def) {
-  const sv = ST.slots[slotKey(def.id)] || {};
-  const tok = ST.phase === 1 ? def.p1 : def.p2;
+  const key = slotKey(def.id), sv = ST.slots[key] || {}, sg = suggestions(ST.month)[def.id];
   return {
-    ...def, key: slotKey(def.id),
-    subject: sv.subject || tokLabel(tok),
-    hint: ST.phase === 1 ? def.h1 : def.h2,
-    note: sv.note || '', status: sv.status || 'sugestão', valNote: sv.valNote || ''
+    ...def, key,
+    subject: sv.subject || (sg.sub ? subName(sg.sub) : 'Escolha a matéria'),
+    hint: sg.hint, note: sv.note || '', status: sv.status || 'sugestão', valNote: sv.valNote || ''
   };
 }
 
 function renderTimeline() {
   document.querySelectorAll('.day-btn').forEach(b => b.classList.toggle('active', b.dataset.day === ST.day));
-  const fixed = (FIXED[ST.day] || []).map(e => ({ ...e, fixed: true }));
+  const fixed = fixedFor(ST.day, ST.month).map(e => ({ ...e, fixed: true }));
   const slots = (SLOTS[ST.day] || []).map(slotView);
   const all = [...fixed, ...slots].sort((a, b) => a.s.localeCompare(b.s) || (a.fixed ? 1 : -1));
   document.getElementById('timeline').innerHTML = all.map(e => e.fixed ? renderFixed(e) : renderSlot(e)).join('');
@@ -793,6 +892,10 @@ function renderSlot(s) {
 //  MODAL
 // ══════════════════════════════════════════════
 function findSlot(id) { for (const d of DAYS) { const f = (SLOTS[d] || []).find(s => s.id === id); if (f) return { def: f, day: d }; } return null; }
+function subjectOptions() {
+  const subs = monthSubs(ST.month);
+  return [...subs, ...SUBJ_ORDER.filter(x => !subs.includes(x))].map(subName);
+}
 
 function openSlot(id) {
   const f = findSlot(id); if (!f) return;
@@ -802,13 +905,13 @@ function openSlot(id) {
   document.getElementById('gioFields').style.display = isPai ? 'none' : 'block';
   document.getElementById('paiFields').style.display = isPai ? 'block' : 'none';
   document.getElementById('modalH').textContent = isPai ? 'Validar horário' : 'Editar horário de estudo';
-  document.getElementById('modalSub').textContent = `${v.s} – ${v.e} · ${DAY_LABEL[f.day]} · ${ST.phase === 1 ? 'até dez/2026' : 'a partir de jan/2027'}`;
+  document.getElementById('modalSub').textContent = `${v.s} – ${v.e} · ${DAY_LABEL[f.day]} · ${monthById(ST.month).name}/${monthById(ST.month).yr}`;
   if (!isPai) {
-    const opts = subjectOptions(ST.phase);
+    const opts = subjectOptions();
     const known = opts.includes(v.subject);
     document.getElementById('subSel').innerHTML = opts.map(o => `<option${o === v.subject ? ' selected' : ''}>${esc(o)}</option>`).join('') +
       `<option value="__outra"${known ? '' : ' selected'}>Outra disciplina…</option>`;
-    document.getElementById('otherInp').value = known ? '' : v.subject;
+    document.getElementById('otherInp').value = known || v.subject === 'Escolha a matéria' ? '' : v.subject;
     document.getElementById('noteInp').value = v.note;
     const pn = document.getElementById('prevNote');
     pn.style.display = v.status === 'rejeitada' && v.valNote ? 'block' : 'none';
@@ -833,89 +936,94 @@ function saveSlot() {
     if (!subject) { document.getElementById('otherInp').focus(); showT('Escreva o nome da disciplina'); return; }
   }
   commit('slots/' + key, { subject, note: document.getElementById('noteInp').value.trim(), status: 'proposta', at: Date.now() });
-  closeModal(); updatePending(); renderTimeline(); showT('Proposta enviada ao pai');
+  closeModal(); renderAll(); showT('Proposta enviada ao pai');
 }
 function decide(status) {
   const key = ST.editKey; if (!key) return;
-  const cur = ST.slots[key];
-  const def = findSlot(key.replace(/^p\d_/, ''));
-  const base = cur || { subject: slotView(def.def).subject, note: '' };
+  const def = findSlot(key.slice(key.indexOf('_') + 1));
+  const base = ST.slots[key] || { subject: slotView(def.def).subject, note: '' };
   commit('slots/' + key, { ...base, status, valNote: document.getElementById('valNoteInp').value.trim(), at: Date.now() });
-  closeModal(); updatePending(); renderTimeline();
+  closeModal(); renderAll();
 }
 function approveSlot() { decide('aprovada'); }
 function rejectSlot() { decide('rejeitada'); }
+function approveAllMonth() {
+  const pre = ST.month + '_'; let n = 0;
+  for (const [k, v] of Object.entries(ST.slots)) {
+    if (k.startsWith(pre) && v && v.status === 'proposta') { commit('slots/' + k, { ...v, status: 'aprovada', at: Date.now() }); n++; }
+  }
+  renderAll(); showT(n ? `${n} horário(s) aprovado(s)` : 'Nenhuma proposta neste mês');
+}
 
 // ══════════════════════════════════════════════
 //  PLANO MENSAL
 // ══════════════════════════════════════════════
-const cntCourse = () => MONTHS.filter(m => ST.months[m.id]?.course).length;
-const cntMA = () => MONTHS.filter(m => ST.months[m.id]?.ma).length;
-
 function renderPlanner() {
-  const c = MONTHS.filter(m => ST.months[m.id]?.course).map(m => `${m.name}/${String(m.yr).slice(2)} (${LANG_NAME[ST.months[m.id].course]})`).join(', ') || 'Nenhum';
-  const ma = MONTHS.filter(m => ST.months[m.id]?.ma).map(m => `${m.name}/${String(m.yr).slice(2)} (${MA_LABEL[ST.months[m.id].ma] || ST.months[m.id].ma})`).join(', ') || 'Nenhum';
   document.getElementById('planSummary').innerHTML =
-    `<div class="ps-item"><div class="ps-label">🗣️ Curso intensivo de idioma (1 mês)</div><div class="ps-val">${esc(c)}</div></div>
-     <div class="ps-item"><div class="ps-label">🥋 Arte marcial (até 2 meses)</div><div class="ps-val">${esc(ma)}</div></div>`;
+    `<div class="ps-item"><div class="ps-label">Como funciona</div><div class="ps-val">Marque quantas opções quiser em cada mês. A Agenda e as Matérias daquele mês mudam na hora.</div></div>`;
   document.getElementById('monthsGrid').innerHTML = MONTHS.map(renderMC).join('');
 }
 function renderMC(m) {
-  const ms = ST.months[m.id] || {};
-  const courseFull = cntCourse() >= 1 && !ms.course, maFull = cntMA() >= 2 && !ms.ma;
-  const cBtn = (l) => `<button class="opt-btn${ms.course === l ? ' sel-' + l : ''}" onclick="toggleCourse('${m.id}','${l}')" ${courseFull ? 'disabled' : ''}><span class="opt-dot${ms.course === l ? ' on' : ''}"></span>${LANG_NAME[l]}${ms.course === l ? ' ✓' : ''}</button>`;
-  const maBtn = (k) => `<button class="opt-btn${ms.ma === k ? ' sel-' + k : ''}" onclick="toggleMA('${m.id}','${k}')" ${(ms.ma !== k && maFull) ? 'disabled' : ''}><span class="opt-dot${ms.ma === k ? ' on' : ''}"></span>${MA_LABEL[k]}${ms.ma === k ? ' ✓' : ''}</button>`;
-  const phaseTag = m.phase === 1 ? '<span class="mc-phase p1">🗣️ Inglês + Francês</span>' : `<span class="mc-phase p2">🔬 Ciências em ${LANG_NAME[ST.lang]}</span>`;
-  return `<div class="mc${(ms.course || ms.ma) ? ' has-act' : ''}">
-    <div class="mc-name">${m.name}</div><div class="mc-year">${m.yr}</div>${phaseTag}
+  const subs = monthSubs(m.id), arts = monthArts(m.id), courses = monthCourses(m.id), days = artDays(arts);
+  const chk = (field, val, on, label, cls) =>
+    `<button class="chk${on ? ' on ' + cls : ''}" data-field="${field}" data-val="${val}" onclick="toggleList('${m.id}','${field}','${val}')"><span class="box">${on ? '✓' : ''}</span>${label}</button>`;
+  const active = (subsCustom(m.id) && subs.length) || arts.length || courses.length;
+  return `<div class="mc${active ? ' has-act' : ''}${m.id === ST.month ? ' current' : ''}" data-month="${m.id}">
+    <div class="mc-name">${m.name}</div><div class="mc-year">${m.yr}</div>
     <div class="mc-fixed-tags">
       <span class="mc-tag" style="background:var(--gym);color:var(--gym-t)">💪 Musculação seg/qua/sex</span>
-      <span class="mc-tag" style="background:var(--box);color:var(--box-t)">🥋 Luta ter/qui</span>
       <span class="mc-tag" style="background:var(--fut);color:var(--fut-t)">⚽ Futebol qua</span>
       <span class="mc-tag" style="background:var(--ther);color:var(--ther-t)">🧠 Lidiane qua</span>
     </div>
-    <div class="mc-sec-title">🗣️ Curso intensivo de idioma</div>${cBtn('en')}${cBtn('fr')}
-    ${courseFull ? '<div style="font-size:11px;color:var(--lt);margin:-2px 0 4px">Já escolhido em outro mês</div>' : ''}
-    <div class="mc-sec-title">🥋 Arte marcial</div>${maBtn('muay')}${maBtn('krav')}${maBtn('jiu')}
+    <div class="mc-sec-title">📚 Matérias de estudo ${subsCustom(m.id) ? '' : '<span class="mc-def">(padrão)</span>'}</div>
+    <div class="chk-grid">${SUBJ_ORDER.map(id => chk('subs', id, subs.includes(id), `${SUBJ[id].ico} ${SUBJ[id].name}`, SUBJ[id].cls)).join('')}</div>
+    <div class="mc-sec-title">🥋 Arte marcial</div>
+    ${MA_ORDER.map(a => chk('ma', a, arts.includes(a), `${MA_ICON[a]} ${MA_LABEL[a]}${arts.includes(a) ? ` <small>· ${days[a]}</small>` : ''}`, 'sel-' + a)).join('')}
+    <div class="mc-sec-title">🗣️ Curso presencial de idioma</div>
+    <div class="chk-grid">${COURSE_ORDER.map(c => chk('course', c, courses.includes(c), `${c === 'en' ? '🇬🇧' : '🇫🇷'} ${LANG_NAME[c]}`, 'sel-' + c)).join('')}</div>
     <div class="mc-sec-title">📝 Objetivos do mês</div>
-    <textarea class="mc-notes" placeholder="Metas, provas, foco do mês…" onchange="saveNote('${m.id}',this.value)">${esc(ms.notes || '')}</textarea>
+    <textarea class="mc-notes" placeholder="Metas, provas, foco do mês…" onchange="saveNote('${m.id}',this.value)">${esc(ST.months[m.id]?.notes || '')}</textarea>
+    <button class="mc-go" onclick="goMonth('${m.id}')">📅 Ver agenda de ${m.name} →</button>
   </div>`;
 }
-function toggleCourse(id, l) {
-  const ms = ST.months[id] || {};
-  if (ms.course === l) commit(`months/${id}/course`, null);
-  else { if (!ms.course && cntCourse() >= 1) return; commit(`months/${id}/course`, l); }
-  renderPlanner();
+function toggleList(mid, field, val) {
+  const order = field === 'subs' ? SUBJ_ORDER : field === 'ma' ? MA_ORDER : COURSE_ORDER;
+  let cur = field === 'subs' ? monthSubs(mid) : listOf(ST.months[mid]?.[field]);
+  cur = cur.includes(val) ? cur.filter(x => x !== val) : [...cur, val];
+  cur.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  commit(`months/${mid}/${field}`, field === 'subs' ? cur.join(',') : (cur.join(',') || null));
+  renderAll();
 }
-function toggleMA(id, k) {
-  const ms = ST.months[id] || {};
-  if (ms.ma === k) commit(`months/${id}/ma`, null);
-  else { if (!ms.ma && cntMA() >= 2) return; commit(`months/${id}/ma`, k); }
-  renderPlanner();
-}
-function saveNote(id, val) { commit(`months/${id}/notes`, val.trim() || null); }
+function saveNote(id, val) { commit(`months/${id}/notes`, val.trim() || null); renderMonthBar(); }
 
 // ══════════════════════════════════════════════
 //  MATÉRIAS
 // ══════════════════════════════════════════════
 const total = id => DAYS.reduce((a, d) => a + Number(ST.hrs[id]?.[d] || 0), 0);
 const fmtH = n => String(Math.round(n * 100) / 100).replace('.', ',');
+function plannedHours() {
+  const h = {};
+  for (const d of DAYS) for (const def of SLOTS[d]) {
+    const id = subIdFromLabel(slotView(def).subject);
+    if (id) h[id] = (h[id] || 0) + mins(def.s, def.e) / 60;
+  }
+  return h;
+}
 function renderMaterias() {
-  const subs = SUBJECTS[ST.phase];
-  document.getElementById('matTitle').textContent = ST.phase === 1 ? 'Horas por matéria — até dez/2026' : 'Horas por matéria — a partir de jan/2027';
-  document.getElementById('subCards').innerHTML = subs.map(s => {
-    const h = total(s.id), pct = Math.min(100, Math.round(h / s.goal * 100));
-    const lbl = s.id === 'idi' ? LANG_NAME[ST.lang] : s.lbl;
-    return `<div class="sc ${s.cls}" style="background:#fff"><div class="sc-ico">${s.ico}</div><div class="sc-name">${lbl}</div><div class="sc-hrs">${fmtH(h)}<span style="font-size:13px;font-weight:400">h</span></div><div class="sc-goal">Meta: ${s.goal}h/semana</div><div class="sc-bar"><div class="sc-fill" style="width:${pct}%"></div></div></div>`;
-  }).join('');
+  const plan = plannedHours(), subs = monthSubs(ST.month);
+  const ids = SUBJ_ORDER.filter(id => subs.includes(id) || plan[id] || total(id));
+  document.getElementById('subCards').innerHTML = ids.map(id => {
+    const s = SUBJ[id], h = total(id), goal = plan[id] || 0, pct = goal ? Math.min(100, Math.round(h / goal * 100)) : (h ? 100 : 0);
+    return `<div class="sc ${s.cls}" style="background:#fff" data-sub="${id}"><div class="sc-ico">${s.ico}</div><div class="sc-name">${esc(subName(id))}</div><div class="sc-hrs">${fmtH(h)}<span style="font-size:13px;font-weight:400">h</span></div><div class="sc-goal">Meta: ${fmtH(goal)}h/semana (agenda)</div><div class="sc-bar"><div class="sc-fill" style="width:${pct}%"></div></div></div>`;
+  }).join('') || '<div style="font-size:13px;color:var(--muted)">Nenhuma matéria marcada para este mês.</div>';
   document.getElementById('wkGrid').innerHTML =
     `<div class="wk-head"><div>Matéria</div>${DAYS.map(d => `<div>${DAY_SHORT[d]}</div>`).join('')}<div>Total</div></div>` +
-    subs.map(s => `<div class="wk-row"><div class="wk-sub"><span class="wk-dot" style="background:${s.dot}"></span>${s.ico} ${s.id === 'idi' ? LANG_NAME[ST.lang] : s.lbl}</div>${DAYS.map(d => `<div><input class="hr-inp" type="text" inputmode="decimal" value="${String(ST.hrs[s.id]?.[d] || '').replace('.', ',')}" placeholder="0" onchange="setHr('${s.id}','${d}',this.value)"></div>`).join('')}<div class="wk-total">${fmtH(total(s.id))}h</div></div>`).join('');
+    ids.map(id => `<div class="wk-row"><div class="wk-sub"><span class="wk-dot" style="background:${SUBJ[id].dot}"></span>${SUBJ[id].ico} ${SUBJ[id].name}</div>${DAYS.map(d => `<div><input class="hr-inp" type="text" inputmode="decimal" value="${String(ST.hrs[id]?.[d] || '').replace('.', ',')}" placeholder="0" onchange="setHr('${id}','${d}',this.value)"></div>`).join('')}<div class="wk-total">${fmtH(total(id))}h</div></div>`).join('');
 }
 function setHr(sid, day, val) { const n = Math.max(0, Number(String(val).replace(',', '.')) || 0); commit(`hrs/${sid}/${day}`, n || null); renderMaterias(); }
 function resetWeek() {
   if (!confirm('Zerar as horas registradas desta semana?')) return;
-  SUBJECTS[ST.phase].forEach(s => commit(`hrs/${s.id}`, null));
+  SUBJ_ORDER.forEach(id => { if (total(id)) commit(`hrs/${id}`, null); });
   ensureDefaults(); renderMaterias();
 }
 
